@@ -1,0 +1,133 @@
+@font-face {
+  font-family: Sahel;
+  src: url('Sahel.eot');
+  src: url('Sahel.eot?#iefix') format('embedded-opentype'),
+       url('Sahel.woff2') format('woff2'),
+       url('Sahel.woff') format('woff'),
+       url('Sahel.ttf') format('truetype');
+}
+
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: "Sahel";
+    font-size: 20px;
+    font-family: Sahel !important;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    font-family: Sahel !important;
+}
+
+.navbar-nav {
+    margin-right: auto;
+    margin-left: initial !important;
+}
+
+.post-preview > .post-meta {
+    text-align: left;
+}
+.meta{
+    text-align: left;
+}
+.margin-left{
+    margin-left: 20px;
+}
+
+.text-justify{
+    text-align: justify !important;
+}
+
+.nav ul {
+    padding-right: 0;
+}
+
+.navbar-nav .nav-link{
+    padding: 15px !important;
+}
+
+.nav ul li{
+    border-bottom: none;
+    height: 16px;
+    line-height: 16px;
+    font-size: 14px;
+    display: inline-block;
+    float: left;
+    margin: 0 auto;
+}
+.nav ul li a {
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    transition: .3s background-color;
+    padding: 0 24px;
+}
+
+.nav ul li a:hover {
+    background-color: #828b96;
+    color: #ffffff;
+}
+
+.nav a{
+    border-bottom: none;
+}
+
+.nav li ul{
+    position: absolute;
+    display: none;
+    width: inherit;
+}
+
+.nav li:hover ul {
+    display: block;
+}
+
+.nav ul li ul li {
+    display: block;
+    float: none !important;
+    height: auto;
+    line-height: 34px;
+}
+
+.nav ul li ul li ul{
+    position: absolute;
+    right: 100%;
+    top: 0;
+    display: none !important;
+}
+
+.nav ul > li > ul > li:hover >ul {
+    display:block !important;
+}
+
+.nav ul > li > ul > li > ul > li:hover > ul {
+    display:block !important;
+}
+
+.post-title{
+    font-size: 20px !important;
+}
+
+.post-subtitle{
+    font-size: 15px !important;
+    font-style: normal !important;
+}
+
+.post-meta{
+    font-size: 13px !important;
+    margin: 10px 0;
+}
+
+.post-hashtak{
+    font-size: 12px !important;
+}
+
+.post-text {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: auto;
+    width: 66.66666667%;
+}
+
+
