@@ -116,6 +116,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .post-meta{
     font-size: 13px !important;
     margin: 10px 0;
+    float: left;
 }
 
 .post-hashtak{

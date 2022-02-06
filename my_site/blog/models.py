@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from extentions.utils import geregori_to_jalali
 from django.utils.html import format_html
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -38,6 +39,7 @@ class Article(models.Model):
         ('p', "منتشر شده"),
         ('d', "پیش نویس"),
     )
+    author = models.ForeignKey(User,null=True, on_delete=models.SET_NULL, verbose_name='نویسنده', related_name='posts')
     title = models.CharField(max_length=200, verbose_name='عنوان')
     slug = models.CharField(max_length=100, unique=True, verbose_name='آدرس')
     category = models.ManyToManyField(Category, verbose_name='دسته بندی', related_name="posts")
