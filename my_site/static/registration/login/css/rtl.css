@@ -1,0 +1,25 @@
+@font-face {
+  font-family: Sahel;
+  src: url('Sahel.eot');
+  src: url('Sahel.eot?#iefix') format('embedded-opentype'),
+       url('Sahel.woff2') format('woff2'),
+       url('Sahel.woff') format('woff'),
+       url('Sahel.ttf') format('truetype');
+}
+
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: "Sahel";
+    font-size: 20px;
+    font-family: Sahel !important;
+}
+
+.myfont, .login100-form-title{
+    font-family: Sahel !important;
+}
+
+.btn-show-pass {
+    right: initial !important;
+    left: 0;
+}
