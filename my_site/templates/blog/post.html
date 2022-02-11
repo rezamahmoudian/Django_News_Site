@@ -9,7 +9,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
                             <h1>{{ post.title }}</h1>
-                            <h2 class="subheading">{{ post.content | truncatechars:70 }}</h2>
+                            <h2 class="subheading">{{ post.content | striptags | truncatechars:70 }}</h2>
                             <span class="meta">
                                 نوشته شده توسط
                                 <a href="#!">رضا </a>

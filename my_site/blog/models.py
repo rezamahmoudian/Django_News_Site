@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from extentions.utils import geregori_to_jalali
 from django.utils.html import format_html
-from django.contrib.auth.models import User
+from acount.models import User
 from django.urls import reverse
 
 # Create your models here.
