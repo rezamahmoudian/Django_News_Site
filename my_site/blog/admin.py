@@ -26,7 +26,7 @@ make_draft.short_description = 'پیش نویس کردن مقالات انتخا
 
 class AdminArticle(admin.ModelAdmin):
     list_display = ('title', 'image_post_adminpage', 'author', 'slug', 'jpublish', 'status', 'category_to_str')
-    list_filter = ('publish', 'status')
+    list_filter = ('publish', 'status', 'author')
     ordering = ('-status', '-publish')
     search_fields = ('title', 'slug', 'content')
     prepopulated_fields = {'slug': ('title', )}

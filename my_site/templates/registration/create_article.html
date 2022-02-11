@@ -1,0 +1,55 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head %} {% block meta_title %}
+افزودن مقاله ی جدید
+{% endblock %} {% endblock %}
+
+
+{% block main %}
+<!-- Security token -->
+<div class="col-md-12">
+    <!-- general form elements -->
+    <div class="card card-primary" style="background-color: #dde4ec;">
+        <div class="card-header">
+            <h3 class="card-title float-left">فرم ایجاد مقاله</h3>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                {{ form.title|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.author|as_crispy_field }}
+            </div>
+        </div>
+        <!-- Using the formset -->
+            <div class="row">
+                <div class="col-6">
+                    {{ form.slug|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.category|as_crispy_field }}
+                </div>
+            </div>
+            {{ form.content|as_crispy_field }}
+            {{ form.image|as_crispy_field }}
+            <div class="row">
+                <div class="col-6">
+                    {{ form.publish|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.status|as_crispy_field }}
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" style="margin-right: 47%;">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+

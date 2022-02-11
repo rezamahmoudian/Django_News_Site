@@ -1,4 +1,71 @@
-home
-<P>
-    {{ user.get_full_name }}
-</P>
+{% extends 'registration/base.html' %}
+
+{% block head %}
+لیست مقالات
+{% endblock %}
+
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>تصویر</th>
+                            <th>نویسنده</th>
+                            <th>دسته بندی</th>
+                            <th>خلاصه</th>
+                            <th>زمان انتشار</th>
+                            <th>وضعیت</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for article in object_list %}
+                        <tr>
+                            <td>{{ article.title }} </td>
+                            <td>{{ article.image_post_adminpage }} </td>
+                            <td>{{ article.author.get_full_name }} </td>
+                            <td>{{ article.category_to_str }} </td>
+                            <td>{{ article.content | striptags | truncatewords:35 }} </td>
+                            <td>{{ article.jpublish }} </td>
+
+                            <td>
+                                {% if article.status == 'p' %}
+                                <span class="badge badge-success">منتشر شده</span>
+                                <a target="_blank" href="{% url 'blog:post' article.slug %}" class="badge badge-primary">مشاهده در سایت</a>
+                                {% else %}
+                                <span class="badge badge-danger">پیشنویس</span>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
