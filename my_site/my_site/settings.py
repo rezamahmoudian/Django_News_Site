@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 LOGIN_REDIRECT_URL = 'acount:home'
+LOGOUT_REDIRECT_URL = 'acount:login'
 LOGIN_URL = 'acount:login'
 
 

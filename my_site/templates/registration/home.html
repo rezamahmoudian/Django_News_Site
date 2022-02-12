@@ -6,6 +6,7 @@
 
 
 {% block main %}
+{% if object_list %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -74,6 +75,9 @@
         </div>
     </div>
 </div>
+{% else %}
+    <h5>مقاله ای جهت نمایش وجود ندارد.</h5>
+{% endif %}
 
 {% endblock %}
 
