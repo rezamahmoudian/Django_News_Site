@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from blog.models import Article
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .mixins import CreateFieldsMixin, FormValidMixin
+from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm
 # Create your views here.
 
 app_name = 'acount'
@@ -26,5 +26,8 @@ class ArticleCreateView(LoginRequiredMixin, FormValidMixin, CreateFieldsMixin, C
     model = Article
     template_name = 'registration/create_article.html'
 
+class ArticleUpdateView(LoginRequiredMixin, AccessUpdateForm, FormValidMixin, CreateFieldsMixin, UpdateView):
+    model = Article
+    template_name = 'registration/create_article.html'
 
 

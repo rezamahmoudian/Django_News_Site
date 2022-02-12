@@ -1,4 +1,6 @@
 from django.http.response import  Http404
+from django.shortcuts import get_object_or_404
+from blog.models import Article
 
 class CreateFieldsMixin():
     def dispatch(self, request, *args, **kwargs):
@@ -22,4 +24,11 @@ class FormValidMixin():
         return super().form_valid(form)
 
 
+class AccessUpdateForm():
+    def dispatch(self, request, pk, *args, **kwargs):
+        article = get_object_or_404(Article, pk=pk)
+        if self.request.user.is_superuser or (article.author == request.user and article.status == 'd'):
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise Http404("شما به این صفحه دسترسی ندارید.")
 
