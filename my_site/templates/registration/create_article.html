@@ -21,28 +21,28 @@
                 {{ form.title|as_crispy_field }}
             </div>
             <div class="col-6">
-                {{ form.author|as_crispy_field }}
+                {{ form.slug|as_crispy_field }}
             </div>
         </div>
         <!-- Using the formset -->
             <div class="row">
-                <div class="col-6">
-                    {{ form.slug|as_crispy_field }}
-                </div>
                 <div class="col-6">
                     {{ form.category|as_crispy_field }}
                 </div>
             </div>
             {{ form.content|as_crispy_field }}
             {{ form.image|as_crispy_field }}
+
+            {% if user.is_superuser %}
             <div class="row">
                 <div class="col-6">
-                    {{ form.publish|as_crispy_field }}
+                    {{ form.author|as_crispy_field }}
                 </div>
                 <div class="col-6">
                     {{ form.status|as_crispy_field }}
                 </div>
             </div>
+            {% endif %}
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" style="margin-right: 47%;">Submit</button>
             </div>
