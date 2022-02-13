@@ -31,3 +31,4 @@ class ArticleUpdateView(LoginRequiredMixin, AccessUpdateForm, FormValidMixin, Cr
     template_name = 'registration/create_article.html'
 
 
+
