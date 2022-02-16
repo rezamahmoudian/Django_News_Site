@@ -61,6 +61,12 @@
                                 {% else %}
                                 <span class="badge badge-danger">پیشنویس</span>
                                 {% endif %}
+                                {% if user.is_superuser or user.username == article.author and artcle.status == 'd' %}
+                                <span>
+                                    <a href="{% url 'acount:delete_atticle' article.pk %}" class="badge text-danger">حذف</a>
+                                </span>
+
+                                {% endif %}
                             </td>
 
                         </tr>

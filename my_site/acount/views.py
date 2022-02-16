@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from blog.models import Article
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm
+from django.urls import reverse_lazy
 # Create your views here.
 
 app_name = 'acount'
@@ -29,6 +30,11 @@ class ArticleCreateView(LoginRequiredMixin, FormValidMixin, CreateFieldsMixin, C
 class ArticleUpdateView(LoginRequiredMixin, AccessUpdateForm, FormValidMixin, CreateFieldsMixin, UpdateView):
     model = Article
     template_name = 'registration/create_article.html'
+
+class ArticleDeleteView(LoginRequiredMixin, AccessUpdateForm, DeleteView):
+    model = Article
+    success_url = reverse_lazy("acount:home")
+    template_name = 'registration/delete_article.html'
 
 
 
