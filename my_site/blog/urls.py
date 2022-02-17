@@ -12,5 +12,5 @@ urlpatterns = [
     path('category/<slug:slug>/<int:page>', views.CategoryListView.as_view(), name='category'),
     path('author/<slug:username>',views.AuthorListView.as_view(), name='author'),
     path('author/<slug:username>/<int:page>', views.AuthorListView.as_view(), name='author'),
-
+    path('preview-post/<int:pk>', views.PreviewPostView.as_view() , name='preview-post'),
 ]

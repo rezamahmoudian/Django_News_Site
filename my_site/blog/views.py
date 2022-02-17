@@ -2,7 +2,9 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Category
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
+from acount.mixins import AccessUpdateForm
 
 # Create your views here.
 
@@ -77,3 +79,15 @@ class AuthorListView(ListView):
         context = super().get_context_data(**kwargs)
         context['author'] = author
         return context
+
+
+def postView(request, slug):
+    post = get_object_or_404(Article, slug=slug, status='p')
+    dic = {'post': post}
+    return render(request, 'blog/post.html', dic)
+
+class PreviewPostView(AccessUpdateForm, DetailView):
+    def get_queryset(self):
+        pk= self.kwargs.get('pk')
+        return Article.objects.filter(pk = pk)
+    template_name = 'blog/preview_post.html'

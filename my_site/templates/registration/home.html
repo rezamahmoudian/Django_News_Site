@@ -56,17 +56,22 @@
 
                             <td>
                                 {% if article.status == 'p' %}
-                                <span class="badge badge-success">منتشر شده</span>
-                                <a target="_blank" href="{% url 'blog:post' article.slug %}" class="badge badge-primary">مشاهده در سایت</a>
+                                <p class="badge badge-success" style="margin-bottom: 0">منتشر شده</p>
+                                <p style="margin-bottom: 0">
+                                    <a target="_blank" href="{% url 'blog:post' article.slug %}" class="badge badge-primary">مشاهده در سایت</a>
+                                </p>
                                 {% else %}
-                                <span class="badge badge-danger">پیشنویس</span>
+                                <p class="badge badge-danger" style="margin-bottom: 0">پیشنویس</p>
+                                <p style="margin-bottom: 0">
+                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">پیش نمایش</a>
+                                </p>
                                 {% endif %}
-                                {% if user.is_superuser or user.username == article.author and artcle.status == 'd' %}
-                                <span>
+                                {% if user.is_superuser or user.username == article.author and article.status == 'd' %}
+                                <p style="margin-bottom: 0">
                                     <a href="{% url 'acount:delete_atticle' article.pk %}" class="badge text-danger">حذف</a>
-                                </span>
-
+                                </p>
                                 {% endif %}
+
                             </td>
 
                         </tr>
