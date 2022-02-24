@@ -5,9 +5,9 @@ from blog.models import Article
 class CreateFieldsMixin():
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_superuser:
-            self.fields = ['author','title','slug','category','content','image','status']
+            self.fields = ['author','title','slug','category','content','image', 'special', 'status']
         elif self.request.user.is_author:
-            self.fields = ['title', 'slug', 'category', 'content', 'image']
+            self.fields = ['title', 'slug', 'category', 'content', 'image', 'special']
         else:
             raise Http404("شما به این صفحه دسترسی ندارید.")
         return super().dispatch(request, *args, **kwargs)

@@ -33,6 +33,7 @@
                             <th>دسته بندی</th>
                             <th>خلاصه</th>
                             <th>زمان انتشار</th>
+                            <th>مقاله ی ویژه</th>
                             <th>وضعیت</th>
                         </tr>
                         </thead>
@@ -53,6 +54,13 @@
                             <td>{{ article.category_to_str }} </td>
                             <td>{{ article.content | striptags | truncatewords:35 }} </td>
                             <td>{{ article.jpublish }} </td>
+                            <td>
+                                {% if article.special %}
+                                    <i class="fa fa-check-circle" style="color: green"></i>
+                                {% else %}
+                                    <i class="fa fa-times-circle" style="color: red"></i>
+                                {% endif %}
+                            </td>
 
                             <td>
                                 {% if article.status == 'p' %}
