@@ -2,7 +2,11 @@
 {% load crispy_forms_tags %}
 
 {% block head %} {% block meta_title %}
-افزودن مقاله ی جدید
+{% if request.resolver_match.kwargs.pk %}
+                ویرایش مقاله
+            {% else %}
+               افزودن مقاله ی جدید
+            {% endif %}
 {% endblock %} {% endblock %}
 
 
@@ -12,7 +16,11 @@
     <!-- general form elements -->
     <div class="card card-primary" style="background-color: #dde4ec;">
         <div class="card-header">
-            <h3 class="card-title float-left">فرم ایجاد مقاله</h3>
+            {% if request.resolver_match.kwargs.pk %}
+                <h3 class="card-title float-left">ویرایش مقاله</h3>
+            {% else %}
+                <h3 class="card-title float-left">فرم ایجاد مقاله</h3>
+            {% endif %}
         </div>
         <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -44,7 +52,12 @@
             </div>
             {% endif %}
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary"  >ارسال مقاله</button>
+                <button type="submit" class="btn btn-success"  >ارسال مقاله</button>
+                <!--                {% if user.is_superuser %}-->
+                <!--                {% else %}-->
+<!--                    <button type="submit" class="btn btn-primary"  >ذخیره ی مقاله</button>-->
+<!--                    <button type="submit" class="btn btn-success"  >ارسال مقاله</button>-->
+<!--                {% endif %}-->
                 {% if request.resolver_match.kwargs.pk %}
                     <a href="{% url 'acount:delete_atticle' request.resolver_match.kwargs.pk %}"
                        type="submit" class="btn btn-danger" >حذف مقاله</a>

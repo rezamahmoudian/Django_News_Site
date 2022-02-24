@@ -40,7 +40,7 @@
                         {% for article in object_list %}
                         <tr>
                             <td>
-                            {% if article.status == 'd' or user.is_superuser %}
+                            {% if article.status in 'd,b' or user.is_superuser %}
                                 <a href="{% url 'acount:update_atticle' article.pk %}">
                                     {{ article.title }}
                                 </a>
@@ -58,12 +58,20 @@
                                 {% if article.status == 'p' %}
                                 <p class="badge badge-success" style="margin-bottom: 0">منتشر شده</p>
                                 <p style="margin-bottom: 0">
-                                    <a target="_blank" href="{% url 'blog:post' article.slug %}" class="badge badge-primary">مشاهده در سایت</a>
+                                    <a target="_blank" href="{% url 'blog:post' article.slug %}" class="badge badge-secondary">مشاهده در سایت</a>
                                 </p>
-                                {% else %}
-                                <p class="badge badge-danger" style="margin-bottom: 0">پیشنویس</p>
+                                {% elif article.status == 'i' %}
+                                    <p class="badge badge-warning" style="margin-bottom: 0">ارسال شده</p>
+                                    <p style="margin-bottom: 0">
+                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">مشاهده ی پیش نمایش</a>
+                                </p>
+
+                                {% elif article.status == 'b' %}
+                                    <p class="badge badge-danger" style="margin-bottom: 0">برگشت داده شده</p>
+                                {% elif article.status == 'd' %}
+                                <p class="badge badge-info" style="margin-bottom: 0">پیشنویس</p>
                                 <p style="margin-bottom: 0">
-                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">پیش نمایش</a>
+                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">مشاهده ی پیش نمایش</a>
                                 </p>
                                 {% endif %}
                                 {% if user.is_superuser or user.username == article.author and article.status == 'd' %}

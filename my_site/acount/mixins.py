@@ -27,7 +27,7 @@ class FormValidMixin():
 class AccessUpdateForm():
     def dispatch(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Article, pk=pk)
-        if self.request.user.is_superuser or (article.author == request.user and article.status == 'd'):
+        if self.request.user.is_superuser or article.author == request.user and article.status == 'd' or article.author == request.user and article.status == 'b' :
             return super().dispatch(request, *args, **kwargs)
         else:
             raise Http404("شما به این صفحه دسترسی ندارید.")
