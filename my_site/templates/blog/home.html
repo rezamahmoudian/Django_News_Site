@@ -30,20 +30,21 @@
                             <div class="post-text">
                                <a href="{% url 'blog:post' post.slug %}">
                                     <h2 class="post-title">{{ post.title }}</h2>
-                                    <h3 class="post-subtitle">{{ post.content | striptags | truncatewords:40 }}</h3>
+                                    <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
                                 </a>
                             </div>
                         <p class="post-meta">
                             نوشته شده توسط
-                            <a href="#!">رضا </a>
+                            <a href="{% url 'blog:author' post.author.username %}"> {{ post.author.get_full_name }} </a>
                             {{ post.jpublish }}
                         </p>
+                        <div/>
+                        <br>
                         <div class="post-hashtak">
-                            {% for category in post.category_published.all %}
+                            {% for category in post.category.active %}
                                 <a href="{% url 'blog:category' category.slug %}" >#{{ category.title }}</a>
                             {% endfor %}
                         </div>
-                    </div>
                     <!-- Divider-->
                     <hr class="my-4" />
 

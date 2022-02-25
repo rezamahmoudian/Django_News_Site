@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Article, Category
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.models import User
+from acount.models import User
 from acount.mixins import AccessUpdateForm
 
 # Create your views here.
@@ -11,7 +11,7 @@ from acount.mixins import AccessUpdateForm
 
 def homeView(request, page_number=1):
     post_lists = Article.objects.published()
-    paginator = Paginator(post_lists, 2)
+    paginator = Paginator(post_lists, 6)
     posts = paginator.get_page(page_number)
     categorys = Category.objects.filter(status=True)
     dic = {'posts': posts,
@@ -51,7 +51,7 @@ def postView(request, slug):
 
 
 class CategoryListView(ListView):
-    paginate_by = 2
+    paginate_by = 6
     template_name = "../templates/blog/category.html"
 
     def get_queryset(self):
@@ -66,7 +66,7 @@ class CategoryListView(ListView):
         return context
 
 class AuthorListView(ListView):
-    paginate_by = 2
+    paginate_by = 6
     template_name = "../templates/blog/author_list.html"
 
     def get_queryset(self):

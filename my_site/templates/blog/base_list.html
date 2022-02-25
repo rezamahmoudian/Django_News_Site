@@ -30,7 +30,7 @@
                             <div class="post-text">
                                <a href="{% url 'blog:post' post.slug %}">
                                     <h2 class="post-title">{{ post.title }}</h2>
-                                    <h3 class="post-subtitle">{{ post.content | striptags | truncatewords:40 }}</h3>
+                                    <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
                                 </a>
                             </div>
                         <p class="post-meta">
