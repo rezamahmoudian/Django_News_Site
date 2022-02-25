@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from blog.models import Article
+from .models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm
 from django.urls import reverse_lazy
@@ -30,6 +31,14 @@ class ArticleCreateView(LoginRequiredMixin, FormValidMixin, CreateFieldsMixin, C
 class ArticleUpdateView(LoginRequiredMixin, AccessUpdateForm, FormValidMixin, CreateFieldsMixin, UpdateView):
     model = Article
     template_name = 'registration/create_article.html'
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = ['username', 'first_name','last_name', 'email','vip_user', 'is_author']
+    template_name = 'registration/profile.html'
+    def get_object(self, queryset=None):
+        return self.request.user
+
 
 class ArticleDeleteView(LoginRequiredMixin, AccessUpdateForm, DeleteView):
     model = Article
