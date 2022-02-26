@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from blog.models import Article
 from .models import User
+from .forms import ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm
 from django.urls import reverse_lazy
@@ -34,11 +35,20 @@ class ArticleUpdateView(LoginRequiredMixin, AccessUpdateForm, FormValidMixin, Cr
 
 class ProfileView(LoginRequiredMixin, UpdateView):
     model = User
-    fields = ['username', 'first_name','last_name', 'email','vip_user', 'is_author']
+    form_class = ProfileForm
     template_name = 'registration/profile.html'
-    def get_object(self, queryset=None):
+    success_url = reverse_lazy ("acount:profile")
+
+    #فرستادن یوزر به فرم به عنوان آبجکت که باعث میشود فرم نمایش داده شده مربوط به همان یوزری باشد که لاگین کرده است
+    def get_object(self):
         return self.request.user
 
+    #آپدیت کردن kwargs برای ارسال به فرم و ایجاد ارتباط بین ویوو و فرم
+    #فرستادن یوزر با اضافه کردن آن در دیکشنری kwargs که باعث میشود ما در فرم هم به یوزر دسترسی داشته باشیم و شرط سوپر یوزر بودن را ب کار ببریم
+    def get_form_kwargs(self):
+        kwargs = super(ProfileView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 class ArticleDeleteView(LoginRequiredMixin, AccessUpdateForm, DeleteView):
     model = Article
