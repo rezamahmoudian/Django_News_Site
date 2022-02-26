@@ -6,7 +6,7 @@ from blog.models import Article
 from .models import User
 from .forms import ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm
+from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm, AccessAuthors
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 # Create your views here.
@@ -26,11 +26,11 @@ class ArticleListView(LoginRequiredMixin, ListView):
             return Article.objects.filter(author=self.request.user)
 
 
-class ArticleCreateView(LoginRequiredMixin, FormValidMixin, CreateFieldsMixin, CreateView):
+class ArticleCreateView(LoginRequiredMixin, AccessAuthors, FormValidMixin, CreateFieldsMixin, CreateView):
     model = Article
     template_name = 'registration/create_article.html'
 
-class ArticleUpdateView(LoginRequiredMixin, AccessUpdateForm, FormValidMixin, CreateFieldsMixin, UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, AccessAuthors, AccessUpdateForm, FormValidMixin, CreateFieldsMixin, UpdateView):
     model = Article
     template_name = 'registration/create_article.html'
 
