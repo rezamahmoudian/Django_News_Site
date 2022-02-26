@@ -52,7 +52,7 @@
                             <td>{{ article.image_post_adminpage }} </td>
                             <td>{{ article.author.get_full_name }} </td>
                             <td>{{ article.category_to_str }} </td>
-                            <td>{{ article.content | striptags | truncatewords:35 }} </td>
+                            <td>{{ article.content | safe | striptags | truncatewords:35 }} </td>
                             <td>{{ article.jpublish }} </td>
                             <td>
                                 {% if article.special %}

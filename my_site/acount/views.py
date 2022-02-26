@@ -8,6 +8,7 @@ from .forms import ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
 # Create your views here.
 
 app_name = 'acount'
@@ -54,6 +55,15 @@ class ArticleDeleteView(LoginRequiredMixin, AccessUpdateForm, DeleteView):
     model = Article
     success_url = reverse_lazy("acount:home")
     template_name = 'registration/delete_article.html'
+
+
+#سفارشی کردن لاگین ویوو جنگو
+class Login(LoginView):
+    def get_success_url(self):
+        if self.request.user.is_superuser:
+            return reverse_lazy ("acount:home")
+        else:
+            return reverse_lazy ("acount:profile")
 
 
 
