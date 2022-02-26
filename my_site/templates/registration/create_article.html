@@ -33,14 +33,17 @@
             </div>
         </div>
         <!-- Using the formset -->
+            {{ form.content|as_crispy_field }}
+
             <div class="row">
                 <div class="col-6">
                     {{ form.category|as_crispy_field }}
                 </div>
+                <div class="col-6">
+                    {{ form.image|as_crispy_field }}
+                    {{ form.special|as_crispy_field }}
+                </div>
             </div>
-            {{ form.content|as_crispy_field }}
-
-            {{ form.image|as_crispy_field }}
 
             {% if user.is_superuser %}
             <div class="row">
