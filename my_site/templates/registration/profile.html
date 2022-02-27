@@ -2,11 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block head %} {% block meta_title %}
-{% if request.resolver_match.kwargs.pk %}
-                ویرایش مقاله
-            {% else %}
-               افزودن مقاله ی جدید
-            {% endif %}
+پروفایل کاربری
 {% endblock %} {% endblock %}
 
 
@@ -17,9 +13,9 @@
     <div class="card card-primary" style="background-color: #dde4ec;">
         <div class="card-header">
             {% if request.resolver_match.kwargs.pk %}
-                <h3 class="card-title float-left">ویرایش مقاله</h3>
+                <h3 class="card-title float-left">پروفایل کاربری</h3>
             {% else %}
-                <h3 class="card-title float-left">فرم ایجاد مقاله</h3>
+                <h3 class="card-title float-left">پروفایل کاربری</h3>
             {% endif %}
         </div>
         <form method="POST" enctype="multipart/form-data">
@@ -47,12 +43,13 @@
             </div>
             <div class="col-6">
                 {{ form.is_author|as_crispy_field }}
+                <p>گذرواژه:برای تغییر گذرواژه <a href="{% url 'acount:password_change' %}"> کلیک </a> کنید</p>
             </div>
         </div>
         <!-- Using the formset -->
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-success"  >ارسال مقاله</button>
+                <button type="submit" class="btn btn-success"  >ذخیره ی تغییرات</button>
                 <!--                {% if user.is_superuser %}-->
                 <!--                {% else %}-->
 <!--                    <button type="submit" class="btn btn-primary"  >ذخیره ی مقاله</button>-->

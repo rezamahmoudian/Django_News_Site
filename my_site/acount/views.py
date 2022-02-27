@@ -8,7 +8,7 @@ from .forms import ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm, AccessAuthors
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 # Create your views here.
 
 app_name = 'acount'
@@ -65,5 +65,6 @@ class Login(LoginView):
         else:
             return reverse_lazy ("acount:profile")
 
-
-
+#سفارشی کردن ویوو تغییر گذرواژه برای انتقال به صفحه password change done  بعد از تغییر گذرواژه
+class PasswordChanged(PasswordChangeView):
+    success_url = reverse_lazy("acount:password_change_done")
