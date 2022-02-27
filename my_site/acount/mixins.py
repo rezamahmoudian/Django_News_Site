@@ -42,4 +42,4 @@ class AccessAuthors():
             else:
                 return redirect("acount:profile")
         else:
-            return redirect("acount:login")
+            return redirect("login")

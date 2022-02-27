@@ -65,6 +65,3 @@ class Login(LoginView):
         else:
             return reverse_lazy ("acount:profile")
 
-#سفارشی کردن ویوو تغییر گذرواژه برای انتقال به صفحه password change done  بعد از تغییر گذرواژه
-class PasswordChanged(PasswordChangeView):
-    success_url = reverse_lazy("acount:password_change_done")
