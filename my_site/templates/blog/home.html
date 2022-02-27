@@ -29,7 +29,13 @@
                             </div>
                             <div class="post-text">
                                <a href="{% url 'blog:post' post.slug %}">
-                                    <h2 class="post-title">{{ post.title }}</h2>
+                                    <h2 class="post-title">
+                                        {{ post.title }}
+                                        {% if post.special %}
+                                            <span class="badge badge-pill badge-warning">ویژه</span>
+                                        {% endif %}
+
+                                    </h2>
                                     <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
                                 </a>
                             </div>
@@ -60,6 +66,7 @@
                         {% endif %}
                     </div>
                 </div>
+
             </div>
         </div>
 {% endblock %}

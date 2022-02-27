@@ -8,12 +8,17 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>{{ post.title }}</h1>
-                            <h2 class="subheading">{{ post.content | striptags | truncatechars:70 }}</h2>
+                            <h1>
+                                {{ post.title }}
+                                {% if post.special %}
+                                    <span class="badge badge-pill badge-warning">ویژه</span>
+                                {% endif %}
+                            </h1>
+                            <h2 class="subheading">{{ post.content | safe | striptags | truncatewords:30 }}</h2>
                             <span class="meta">
-                                نوشته شده توسط
-                                <a href="#!">رضا </a>
-                                {{ post.jpublish | linebreaks }}
+                                 نوشته شده توسط
+                                <a href="#!">  رضا </a>
+                                {{ post.jpublish }}
                             </span>
                         </div>
                     </div>
@@ -31,9 +36,12 @@
                             {% if user.is_superuser or user == post.author or user.is_vip_user %}
                                 {{ post.content | safe | linebreaks }}
                             {% else %}
-                                <p>
-                                    برای مشاهده ی این مقاله <a href="#">اشتراک ویژه </a>تهیه کنید.
-                                </p>
+                        <div class="vip-warning">
+                            <p class="alert alert-warning">
+                                    این مقاله ویژه است.برای مشاهده ی این مقاله باید <a href="#">اشتراک ویژه </a>تهیه کنید.
+                            </p>
+                        </div>
+
                             {% endif %}
                         {% else %}
                             {{ post.content | safe | linebreaks }}

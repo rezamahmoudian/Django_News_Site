@@ -29,6 +29,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 .meta{
     text-align: left;
+    font-size: 15px !important;
 }
 .margin-left{
     margin-left: 20px;
@@ -111,6 +112,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .post-subtitle{
     font-size: 15px !important;
     font-style: normal !important;
+    font-weight: normal;
 }
 
 .post-meta{
@@ -131,4 +133,24 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     width: 66.66666667%;
 }
 
+a:hover {
+    text-decoration: none;
+}
 
+p a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h1, .post-heading{
+    font-size: 28px !important;
+}
+
+.subheading{
+    font-size: 18px !important;
+    font-weight: normal !important;
+}
+
+p {
+    font-size: 17px;
+}
