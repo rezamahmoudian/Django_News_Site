@@ -52,15 +52,15 @@
 							<span class="focus-input100" data-placeholder="نام کاربری"></span>
 						</div>
 
-						<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<div class="wrap-input100 validate-input" style="margin-bottom: 7px;" data-validate="Enter password">
 							<span class="btn-show-pass">
 								<i class="zmdi zmdi-eye"></i>
 							</span>
 							{{ form.password | add_class:'input100' }}
-							<span class="focus-input100" data-placeholder="گذرواژه'"></span>
+							<span class="focus-input100" data-placeholder="گذرواژه"></span>
 						</div>
-						<a href="{% url 'password_reset' %}">فراموشی گذرواژه</a>
-						<div class="container-login100-form-btn">
+						<a href="{% url 'password_reset' %}">فراموشی رمز ورود</a>
+						<div class="container-login100-form-btn" style="margin-top: 40px">
 							<div class="wrap-login100-form-btn">
 								<div class="login100-form-bgbtn"></div>
 								<button class="login100-form-btn" type="submit">
