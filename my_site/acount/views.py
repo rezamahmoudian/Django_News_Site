@@ -100,7 +100,7 @@ class Signup(CreateView):
             mail_subject, message, to=[to_email]
         )
         email.send()
-        return HttpResponse("ایمیلی برای شما ارسال شد.لطفا برای تکمیل فرایند ثبت نام ایمیل خود را تایید کنید")
+        return HttpResponse("ایمیلی جهت فعالسازی حسابتان برای شما ارسال شد.لطفا برای تکمیل فرایند ثبت نام ایمیل خود را تایید کنید")
 
 
 
@@ -113,7 +113,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse("از شما برای تایید یمیل خود متشکریم.برای ورود به حساب کاریبری خود<'a href='registration/login'>کلیک کنید</a> ")
+        return HttpResponse('از شما برای تایید یمیل خود متشکریم.برای ورود به حساب کاریبری خود <a href="registration/login">کلیک کنید</a> ')
     else:
         return HttpResponse('لینک فعالسازی منقضی شده است')
 

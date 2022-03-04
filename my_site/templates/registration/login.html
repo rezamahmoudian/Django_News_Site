@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V2</title>
+	<title>{% block title %} Login {% endblock %}</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{% static '/registration/login/images/icons/favicon.ico' %}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" }="{% static '/registration/login/vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -17,13 +17,13 @@
 	<link rel="stylesheet" type="text/css" href="{% static '/registration/login/fonts/iconic/css/material-design-iconic-font.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static '/registration/login/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static '/registration/login/vendor/css-hamburgers/hamburgers.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static '/registration/login/vendor/animsition/css/animsition.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static '/registration/login/vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static '/registration/login/vendor/daterangepicker/daterangepicker.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static '/registration/login/css/rtl.css' %}">
@@ -33,7 +33,7 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -60,7 +60,7 @@
 							<span class="focus-input100" data-placeholder="گذرواژه"></span>
 						</div>
 						<a href="{% url 'password_reset' %}">فراموشی رمز ورود</a>
-						<div class="container-login100-form-btn" style="margin-top: 40px">
+						<div class="container-login100-form-btn" style="margin-top: 40px; margin-bottom: 8px">
 							<div class="wrap-login100-form-btn">
 								<div class="login100-form-bgbtn"></div>
 								<button class="login100-form-btn" type="submit">
@@ -68,15 +68,20 @@
 								</button>
 							</div>
 						</div>
+						<p style="text-align: center">
+							حساب کاربری ندارید؟؟
+							<a href="{% url 'signup' %}"> ثبت نام </a>
+							کنید.
+						</p>
 					</form>
 				{% endblock %}
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-	
+
 <!--===============================================================================================-->
 	<script src="{% static '/registration/login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <!--===============================================================================================-->
