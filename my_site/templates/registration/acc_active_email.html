@@ -1,11 +1,6 @@
 {% autoescape off %}
-Hi {{ user.username }},
-Please click on the link to confirm your registration,
+سلام {{ user.username }},
+لطفا برای تایید ایمیل خود و کامل کردن فرایند ثبت نام روی لینک زیر کلیک کنید:
 http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}
 
-
-
-
-از شما برای تایید یمیل خود متشکریم.برای ورود به حساب کاریبری خود
-<a href="{% url 'login' %}">کلیک کنید</a>

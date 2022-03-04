@@ -1,0 +1,22 @@
+{% extends 'registration/message.html' %}
+{% load static %}
+
+
+{% block head %}
+    ایمیل شما تایید شد
+{% endblock %}
+
+
+{% block message %}
+    از شما برای تایید ایمیل خود متشکریم.اکنون شما میتوانید وارد حساب کاربری خود شوید.
+{% endblock %}
+
+
+{% block btn %}
+    <div class="wrap-login100-form-btn">
+        <div ></div>
+        <a href="{% url 'login' %}" class="badge badge-success" style="padding: 7px; padding-bottom: 13px; font-size: 20px; margin-bottom: 10px" >
+            ورود
+        </a>
+    </div>
+{% endblock %}
