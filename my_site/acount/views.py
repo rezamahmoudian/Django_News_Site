@@ -80,9 +80,11 @@ class Login(LoginView):
             return reverse_lazy ("acount:profile")
 
 
+#ویوو صفحه ی ثبت نام
 class Signup(CreateView):
     form_class = SignupForm
     template_name = 'registration/signup.html'
+    #اگر فرم ارسالی ولید بود ایمیلی جهت تایید برای کاربر ارسال شود
     def form_valid(self, form):
         user = form.save(commit=False)
         user.is_active = False
@@ -103,7 +105,7 @@ class Signup(CreateView):
         return render(self.request, 'registration/signup_email_confirm.html')
 
 
-
+#فغالسازی اکانت درصورت کلیک روی لینک ایمیل شده
 def activate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
