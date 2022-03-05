@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'acount.apps.AcountConfig',
     'widget_tweaks',
     'crispy_forms',
+    'comment',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

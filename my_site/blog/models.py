@@ -4,6 +4,9 @@ from extentions.utils import geregori_to_jalali
 from django.utils.html import format_html
 from acount.models import User
 from django.urls import reverse
+#comments
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 
 # Create your models here.
 
@@ -53,6 +56,7 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
     special = models.BooleanField(default=False, verbose_name='مقاله ی ویژه')
+    comments = GenericRelation(Comment)
 
     class Meta:
         verbose_name = 'مقاله'

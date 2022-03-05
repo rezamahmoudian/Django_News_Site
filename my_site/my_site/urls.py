@@ -28,5 +28,7 @@ urlpatterns = [
     path('signup/', Signup.as_view(), name="signup"),
     path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
          activate, name='activate'),
+
+    path('comment/', include('comment.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

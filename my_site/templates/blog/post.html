@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-
+{% load comment_tags %}
+{% include_bootstrap %}
 
 {% block  header %}
     <header class="masthead" style="background-image: url('{{ post.image.url }}')">
@@ -41,12 +42,14 @@
                                     این مقاله ویژه است.برای مشاهده ی این مقاله باید <a href="#">اشتراک ویژه </a>تهیه کنید.
                             </p>
                         </div>
-
                             {% endif %}
                         {% else %}
                             {{ post.content | safe | linebreaks }}
                         {% endif %}
                     </div>
+                        {% render_comments post request %}
+
+
                 </div>
             </div>
         </article>
