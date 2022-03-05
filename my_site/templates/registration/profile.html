@@ -37,6 +37,14 @@
             </div>
         </div>
             <br>
+            <div class="row">
+            <div class="col-5">
+                {{ form.profile_img |as_crispy_field }}
+            </div>
+                <div class="image" >
+          <img src=" {{ user.profile_img.url }} " class="img-circle elevation-2" style="height: 140px; width: 140px;" alt="User Image">
+        </div>
+        </div>
         <div class="row">
             <div class="col-6">
                 {{ form.vip_user|as_crispy_field }}
@@ -46,6 +54,7 @@
                 <p>گذرواژه:برای تغییر گذرواژه <a href="{% url 'password_change' %}"> کلیک </a> کنید</p>
             </div>
         </div>
+
         <!-- Using the formset -->
 
             <div class="card-footer">
