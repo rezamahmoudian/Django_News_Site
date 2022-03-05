@@ -1,26 +1,42 @@
 {% load comment_tags %}
 {% load i18n %}
 
+    {% if comment.user %}
+        <div class="user-panel pb-3 d-flex">
+        <div class="image">
+          <img src=" {{ comment.user.profile_img.url }} " class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="{% url 'acount:profile' %}" class="d-block">
+              {{ comment.user.get_full_name }}
+          {% if comment.user.is_author %}
+            <span class="badge badge-pill badge-warning" style="font-size: 12px">نویسنده</span>
+            {% endif %}
+          </a>
+        </div>
+        </div>
+    {% else %}
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="images/avatar5.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <span class="d-block"> ناشناس </span>
+        </div>
+        </div>
+    {% endif %}
 <div id="{{ comment.urlhash }}" class="js-updated-comment {% if comment.has_flagged_state %}flagged-comment {% endif %}{% block content_wrapper_cls %}{% if has_valid_profile %}col-9 col-md-10{% else %}co-11 mx-3{% endif %}{% endblock content_wrapper_cls %}" >
     {% block comment_content %}
     {% render_content comment %}
     {% endblock comment_content %}
     {% get_username_for_comment comment as username %}
-    <div class="{% block footer_wrapper_cls %}mt-2 text-muted{% endblock footer_wrapper_cls %}">
+    <div class="{% block footer_wrapper_cls %}mt-2 text-muted footer{% endblock footer_wrapper_cls %}">
         <small>
             {% get_profile_url comment as profile_url %}
             <{% if comment.user %}a{% else %}span{% endif %}
-                class="{% block username_cls %}{% endblock username_cls %}" {% if profile_url %}href="{{ profile_url }}"{% endif %}
-                title="{% if comment.user %}{% blocktrans %}{% endblocktrans %}{% else %}{% trans 'نوشته شده توسط کاربر ناشناس' %}{% endif %}"
-            >
-                نوشته شده توسط:
-            {% if comment.user.get_full_name %}
-                {{ comment.user.get_full_name }}
-            {% else %}
-                {{ comment.user }}
-            {% endif %}
 
-            </{% if comment.user %}a{% else %}span{% endif %}> |
+
+            </{% if comment.user %}a{% else %}span{% endif %}>
             {% if comment.is_edited %}
                 <span class="font-italic" title="{% trans 'Edited' %}">{% blocktrans with edited_time=comment.edited|timesince %} {{ edited_time }} ویرایش شده:  قبل {% endblocktrans %}</span>
             {% else %}
