@@ -11,6 +11,10 @@ from comment.responses import UTF8JsonResponse
 from comment.messages import EmailError
 from comment.views import CommentCreateMixin, BaseCommentView
 
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.urls import reverse
+
 
 class CreateComment(CanCreateMixin, CommentCreateMixin):
     comment = None
@@ -42,6 +46,62 @@ class CreateComment(CanCreateMixin, CommentCreateMixin):
         )
         self.comment = self.perform_create(temp_comment, self.request)
         self.data = render_to_string(self.get_template_names(), self.get_context_data(), request=self.request)
+        #فرستادن ایمیل با کامنت گذاری
+        current_site = get_current_site(self.request)
+        article = self.comment.content_object
+        author_email = article.author.email
+        comment_writer_email = self.comment.user.email
+        parent_email = False
+        if author_email == comment_writer_email:
+            author_email = False
+            comment_writer_email = False
+        if self.comment.parent:
+            parent_email = self.comment.parent.user.email
+            if parent_email in [comment_writer_email, author_email]:
+                parent_email = False
+        #ایمیل به نویسنده ی مقاله
+        if author_email:
+            if article.author.get_full_name:
+                author_name = article.author.get_full_name()
+            else:
+                author_name = article.author
+            mail_subject = "نظر جدید برای مقاله ی شما"
+            message = "سلام {} عزیز.\n برای مقاله ی <<{}>> شما نظر جدید ثبت شده است." \
+                      "برای مشاهده و پاسخ دادن روی لینک زیر کلیک کنید\n {}{} ".format(author_name,
+                            article.title, current_site, reverse('blog:post', kwargs={'slug': article.slug}) )
+
+            email = EmailMessage( mail_subject, message, to=[author_email] )
+            email.send()
+
+        if comment_writer_email:
+            if self.comment.user.get_full_name:
+                comment_writer_name = self.comment.user.get_full_name()
+            else:
+                comment_writer_name = self.comment.user.username
+            mail_subject = "نظر شما دریافت شد"
+            message = "سلام {} عزیز.\n از شما برای ثبت دیدگاه‌تون در مورد مقاله ی <<{}>> ممنونیم. نظرات شما به کاربران کمک زیادی خواهد کرد\n" \
+                      "بزودی به نظرتان پاسخ خواهیم داد.".format(comment_writer_name, article.title)
+            email = EmailMessage(mail_subject, message, to=[comment_writer_email] )
+            email.send()
+
+        if parent_email:
+            if self.comment.parent.user.get_full_name:
+                parent_name = self.comment.parent.user.get_full_name()
+            else:
+                parent_name = self.comment.parent.user
+            mail_subject = "پاسخ به دیدگاه شما"
+            message = "سلام {} عزیز.\n به دیدگاه شما در مقاله ی <<{}>> پاسخی داده شد" \
+                      "برای مشاهده روی لینک زیر کلیک کنید\n {}{} ".format(parent_name,
+                            article.title, current_site, reverse('blog:post', kwargs={'slug': article.slug}) )
+            email = EmailMessage( mail_subject, message, to=[parent_email] )
+            email.send()
+
+
+
+
+
+
+
         return UTF8JsonResponse(self.json())
 
     def form_invalid(self, form):
@@ -121,3 +181,6 @@ class ConfirmComment(CommentCreateMixin):
         comment = self.perform_save(temp_comment.obj, request)
 
         return redirect(comment.get_url(request))
+
+
+

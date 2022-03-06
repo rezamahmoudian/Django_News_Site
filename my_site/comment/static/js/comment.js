@@ -221,9 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 let replyNum = Number(replyNumberElement.innerText) + 1;
                 replyNumberElement.textContent = replyNum.toString();
                 if (replyNum > 1) {
-                    reply.textContent = gettext("Replies");
+                    reply.textContent = gettext("پاسخ ها");
                 } else {
-                    reply.textContent = gettext("Reply");
+                    reply.textContent = gettext("پاسخ");
                 }
                 commentCount(1);
                 // update followBtn
@@ -380,9 +380,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 replyNumberElement.textContent = replyNum.toString();
 
                 if (replyNum > 1) {
-                    replyLinkElement.textContent = gettext("Replies");
+                    replyLinkElement.textContent = gettext("پاسخ ها");
                 } else {
-                    replyLinkElement.textContent = gettext("Reply");
+                    replyLinkElement.textContent = gettext("پاسخ");
                 }
                 // update total count of comments
                 commentCount(-1);

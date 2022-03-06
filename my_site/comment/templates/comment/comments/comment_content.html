@@ -5,7 +5,7 @@
 
 <div id="{{ comment.urlhash }}" class="col-12 media-comment-bubble media-comment-bubble.left-top:after js-updated-comment {% if comment.has_flagged_state %}flagged-comment {% endif %}{% block content_wrapper_cls %}{% if has_valid_profile %}col-9 col-md-10{% else %}co-11 mx-3{% endif %}{% endblock content_wrapper_cls %}" >
         {% if comment.user %}
-        <div class="user-panel pb-3 d-flex"> 
+        <div class="user-panel pb-3 d-flex">
         <div class="image">
           <img src=" {{ comment.user.profile_img.url }} " class="img-circle elevation-2" alt="User Image">
         </div>
