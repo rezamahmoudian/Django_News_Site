@@ -30,5 +30,6 @@ urlpatterns = [
          activate, name='activate'),
 
     path('comment/', include('comment.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

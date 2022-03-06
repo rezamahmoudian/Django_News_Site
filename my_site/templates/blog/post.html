@@ -2,6 +2,7 @@
 {% load static %}
 {% load comment_tags %}
 {% include_bootstrap %}
+{% load ratings %}
 
 {% block  header %}
     <header class="masthead" style="background-image: url('{{ post.image.url }}')">
@@ -15,6 +16,9 @@
                                     <span class="badge badge-pill badge-warning">ویژه</span>
                                 {% endif %}
                             </h1>
+                            <div>
+                                {% ratings post %}
+                            </div>
                             <h2 class="subheading">{{ post.content | safe | striptags | truncatewords:30 }}</h2>
                             <span class="meta">
                                  نوشته شده توسط
