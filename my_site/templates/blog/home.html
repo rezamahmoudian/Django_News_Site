@@ -24,6 +24,10 @@
                     {% for post in posts %}
                     <!-- Post preview-->
                     <div class="post-preview">
+                        <span class="home-view">
+                            <i class="bi bi-eye "></i>
+                            {{ post.hits.count }}
+                        </span>
                             <div class="post_image">
                                 {{post.image_post}}
                             </div>
@@ -34,7 +38,6 @@
                                         {% if post.special %}
                                             <span class="badge badge-pill badge-warning">ویژه</span>
                                         {% endif %}
-
                                     </h2>
                                     <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
                                 </a>

@@ -154,3 +154,13 @@ h1, .post-heading{
 p {
     font-size: 17px;
 }
+
+.home_view {
+    float: left !important;
+    font-size: 12px !important;
+}
+
+.post-view {
+    font-size: 12px !important;
+}
+

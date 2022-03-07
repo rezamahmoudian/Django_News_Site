@@ -10,6 +10,8 @@ from comment.models import Comment
 
 # Create your models here.
 
+class IP_Address(models.Model):
+    ip_address = models.GenericIPAddressField(verbose_name="آدرس آی پی")
 
 class ArticleManager(models.Manager):
     def published(self):
@@ -57,6 +59,7 @@ class Article(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
     special = models.BooleanField(default=False, verbose_name='مقاله ی ویژه')
     comments = GenericRelation(Comment)
+    hits = models.ManyToManyField(IP_Address, blank=True, related_name='hits', verbose_name="بازدید ها")
 
     class Meta:
         verbose_name = 'مقاله'
@@ -86,4 +89,7 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse("acount:home")
     objects = ArticleManager()
+
+
+
 

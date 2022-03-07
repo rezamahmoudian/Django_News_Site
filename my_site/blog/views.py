@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from .models import Article, Category
+from .models import Article, Category, IP_Address
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from acount.models import User
@@ -33,6 +33,11 @@ def contactView(request):
 def postView(request, slug):
     post = get_object_or_404(Article, slug=slug, status='p')
     dic = {'post': post}
+    ip_address = request.user.ip_address
+    print(ip_address)
+    if not ip_address in post.hits.all():
+        post.hits.add(ip_address)
+
     return render(request, 'blog/post.html', dic)
 
 
@@ -80,11 +85,6 @@ class AuthorListView(ListView):
         context['author'] = author
         return context
 
-
-def postView(request, slug):
-    post = get_object_or_404(Article, slug=slug, status='p')
-    dic = {'post': post}
-    return render(request, 'blog/post.html', dic)
 
 class PreviewPostView(AccessUpdateForm, DetailView):
     def get_queryset(self):

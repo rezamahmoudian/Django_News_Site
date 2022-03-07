@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Category
+from .models import Article, Category, IP_Address
 
 # my changes in admin html page
 admin.site.site_header = "صفحه ی مدیریت"
@@ -30,7 +30,7 @@ class AdminArticle(admin.ModelAdmin):
     ordering = ('-status', '-publish')
     search_fields = ('title', 'slug', 'content')
     prepopulated_fields = {'slug': ('title', )}
-    actions = [make_publish,make_draft]
+    actions = [make_publish, make_draft]
 
 
 
@@ -45,3 +45,4 @@ class AdminCategory(admin.ModelAdmin):
 
 admin.site.register(Article, AdminArticle)
 admin.site.register(Category, AdminCategory)
+admin.site.register(IP_Address)

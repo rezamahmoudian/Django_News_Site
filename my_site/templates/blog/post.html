@@ -18,6 +18,10 @@
                             </h1>
                             <div>
                                 {% ratings post %}
+                                <span class="post-view">
+                                    <i class="bi bi-eye "></i>
+                                {{ post.hits.count }}
+                            </span>
                             </div>
                             <h2 class="subheading">{{ post.content | safe | striptags | truncatewords:30 }}</h2>
                             <span class="meta">
@@ -25,6 +29,7 @@
                                 <a href="#!">  رضا </a>
                                 {{ post.jpublish }}
                             </span>
+
                         </div>
                     </div>
                 </div>
