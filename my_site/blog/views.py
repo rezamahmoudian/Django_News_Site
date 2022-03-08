@@ -9,15 +9,22 @@ from acount.mixins import AccessUpdateForm
 # Create your views here.
 
 
-def homeView(request, page_number=1):
-    post_lists = Article.objects.published()
-    paginator = Paginator(post_lists, 6)
-    posts = paginator.get_page(page_number)
-    categorys = Category.objects.filter(status=True)
-    dic = {'posts': posts,
-           'categorys': categorys}
-    print("posts in home = " , posts)
-    return render(request, 'blog/home.html', dic)
+# def homeView(request, page_number=1):
+#     post_lists = Article.objects.published()
+#     paginator = Paginator(post_lists, 6)
+#     posts = paginator.get_page(page_number)
+#     categorys = Category.objects.filter(status=True)
+#     dic = {'posts': posts,
+#            'categorys': categorys}
+#     print("posts in home = " , posts)
+#     return render(request, 'blog/home.html', dic)
+
+class ArticleListView(ListView):
+    paginate_by = 4
+    template_name = 'blog/home.html'
+    queryset = Article.objects.published()
+
+
 
 
 def aboutView(request):
@@ -56,7 +63,7 @@ def postView(request, slug):
 
 
 class CategoryListView(ListView):
-    paginate_by = 6
+    paginate_by = 4
     template_name = "../templates/blog/category.html"
 
     def get_queryset(self):

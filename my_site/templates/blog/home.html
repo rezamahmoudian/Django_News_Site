@@ -21,7 +21,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
 
-                    {% for post in posts %}
+                    {% for post in object_list %}
                     <!-- Post preview-->
                     <div class="post-preview">
                         <span class="home-view">
@@ -61,11 +61,11 @@
 
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4">
-                        {% if  posts.has_previous %}
-                            <a class="margin-left btn btn-primary text-uppercase " href="{% url 'blog:home'  posts.previous_page_number  %}">پست های جدید &rarr; </a>
+                        {% if  page_obj.has_previous %}
+                            <a class="margin-left btn btn-primary text-uppercase " href="{% url 'blog:home'  page_obj.previous_page_number  %}">پست های جدید &rarr; </a>
                         {% endif %}
-                        {% if posts.has_next %}
-                            <a class="btn btn-primary text-uppercase" href="{% url 'blog:home'  posts.next_page_number  %}">پست های قدیمی &larr; </a>
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-primary text-uppercase" href="{% url 'blog:home'  page_obj.next_page_number  %}">پست های قدیمی &larr; </a>
                         {% endif %}
                     </div>
                 </div>
