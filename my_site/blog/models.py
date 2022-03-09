@@ -39,6 +39,7 @@ class Category(models.Model):
 
     objects = CategoryManager()
 
+
 class Article(models.Model):
     STATUS_CHOICES = (
             ('p', "منتشر شده"),
@@ -93,9 +94,8 @@ class Article(models.Model):
     objects = ArticleManager()
 
 
-
 class ArticleViews(models.Model):
     ip = models.ForeignKey(IP_Address, on_delete=models.CASCADE)
     view = models.ForeignKey(Article,  on_delete=models.CASCADE)
-    create = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 

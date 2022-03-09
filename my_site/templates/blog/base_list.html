@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load tmptags %}
 
 {% block header %}
     <header class="masthead" style="background-image: url({% static 'blog/assets/img/home-bg.jpg' %}")>
@@ -17,6 +18,7 @@
 {% endblock %}
 
 {% block main %}
+            {% popular_articles %}
             <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
@@ -35,7 +37,14 @@
                             </div>
                         <p class="post-meta">
                             نوشته شده توسط
-                            <a href="{% url 'blog:author' post.author.username %}"> {{ post.author.get_full_name }} </a>
+                            <a href="{% url 'blog:author' post.author.username %}">
+                                {% if post.author.get_full_name %}
+                                    {{ post.author.get_full_name }}
+                                {% else %}
+                                    {{ post.author }}
+                                {% endif %}
+                            </a>
+
                             {{ post.jpublish }}
                         </p>
                     </div>

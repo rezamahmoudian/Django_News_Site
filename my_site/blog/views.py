@@ -5,8 +5,6 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from acount.models import User
 from acount.mixins import AccessUpdateForm
-from datetime import datetime, timedelta
-from django.db.models import Count, Q
 
 # Create your views here.
 
@@ -24,14 +22,8 @@ from django.db.models import Count, Q
 class ArticleListView(ListView):
     paginate_by = 4
     template_name = 'blog/home.html'
+    queryset = Article.objects.published()
 
-    def get_queryset(self):
-        last_month = datetime.today() - timedelta(days=30)
-        # article = Article.objects.published()
-        # result = Article.objects.annotate(count=Count('ArticleViews__create__gt')).order_by('count')
-        article = Article.objects.published().annotate( count=Count('views', filter=Q(articleviews__create__gt=last_month))
-                                                        ).order_by('count')
-        return article
 
 
 def aboutView(request):

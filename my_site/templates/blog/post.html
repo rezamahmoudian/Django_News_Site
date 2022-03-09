@@ -3,6 +3,8 @@
 {% load comment_tags %}
 {% include_bootstrap %}
 {% load ratings %}
+{% load tmptags %}
+
 
 {% block  header %}
     <header class="masthead" style="background-image: url('{{ post.image.url }}')">
@@ -38,6 +40,7 @@
 {% endblock %}
 
 {% block main %}
+    {% popular_articles %}
      <article class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">

@@ -164,3 +164,19 @@ p {
     font-size: 12px !important;
 }
 
+.popular_article{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px 15px;
+    width: 240px;
+    position: absolute;
+    left: 20px;
+    box-shadow: -5px 5px #d5d5d5;
+}
+
+.popular_article_title{
+    margin: 7px 2px;
+    font-size: 15px;
+
+}
+
