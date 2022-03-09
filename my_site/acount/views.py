@@ -27,7 +27,7 @@ app_name = 'acount'
 def home(request, ):
     return render(request, 'registration/home.html')
 
-class ArticleListView(LoginRequiredMixin, ListView):
+class ArticleListView(LoginRequiredMixin,AccessAuthors, ListView):
     template_name = 'registration/home.html'
     def get_queryset(self):
         if self.request.user.is_superuser:

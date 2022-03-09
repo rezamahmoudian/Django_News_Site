@@ -20,7 +20,7 @@
                                 {% ratings post %}
                                 <span class="post-view">
                                     <i class="bi bi-eye "></i>
-                                {{ post.hits.count }}
+                                {{ post.views.count }}
                             </span>
                             </div>
                             <h2 class="subheading">{{ post.content | safe | striptags | truncatewords:30 }}</h2>

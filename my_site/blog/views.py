@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from acount.models import User
 from acount.mixins import AccessUpdateForm
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -22,7 +23,13 @@ from acount.mixins import AccessUpdateForm
 class ArticleListView(ListView):
     paginate_by = 4
     template_name = 'blog/home.html'
-    queryset = Article.objects.published()
+
+    def get_queryset(self):
+        last_month = datetime.today() - timedelta(days=30)
+        article = Article.objects.published()
+        # result = article.filter(ArticleViews__create__gt=last_month).order_by('-hits','-published')
+        return article
+
 
 
 
@@ -42,8 +49,8 @@ def postView(request, slug):
     dic = {'post': post}
     ip_address = request.user.ip_address
     print(ip_address)
-    if not ip_address in post.hits.all():
-        post.hits.add(ip_address)
+    if not ip_address in post.views.all():
+        post.views.add(ip_address)
 
     return render(request, 'blog/post.html', dic)
 

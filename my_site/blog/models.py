@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.utils import timezone
 from extentions.utils import geregori_to_jalali
@@ -41,12 +42,13 @@ class Category(models.Model):
 
 class Article(models.Model):
     STATUS_CHOICES = (
-        ('p', "منتشر شده"),
-        ('d', "پیش نویس"),
-        ('i', "ارسال شده"),
-        ('b', "برگشت داده شده"),
+            ('p', "منتشر شده"),
+            ('d', "پیش نویس"),
+            ('i', "ارسال شده"),
+            ('b', "برگشت داده شده"),
     )
-    author = models.ForeignKey(User,null=True, on_delete=models.SET_NULL, verbose_name='نویسنده', related_name='posts')
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, verbose_name='نویسنده',
+                               related_name='posts')
     title = models.CharField(max_length=200, verbose_name='عنوان')
     slug = models.CharField(max_length=100, unique=True, verbose_name='آدرس')
     category = models.ManyToManyField(Category, verbose_name='دسته بندی', related_name="posts")
@@ -58,7 +60,7 @@ class Article(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
     special = models.BooleanField(default=False, verbose_name='مقاله ی ویژه')
     comments = GenericRelation(Comment)
-    hits = models.ManyToManyField(IP_Address, blank=True, related_name='hits', verbose_name="بازدید ها")
+    views = models.ManyToManyField(IP_Address, through="ArticleViews", blank=True, related_name='views', verbose_name="بازدید ها")
 
     class Meta:
         verbose_name = 'مقاله'
