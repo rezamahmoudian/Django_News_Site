@@ -32,9 +32,6 @@ class AdminArticle(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     actions = [make_publish, make_draft]
 
-
-
-
 class AdminCategory(admin.ModelAdmin):
     list_display = ('position', 'title', 'slug', 'parent', 'status')
     list_filter = (['status'])

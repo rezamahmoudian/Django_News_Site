@@ -161,3 +161,5 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 # تنظیمات مربوط به رتبه بندی ستاره ای
 STAR_RATINGS_STAR_HEIGHT = 20
 STAR_RATINGS_STAR_WIDTH = 20
+
+USE_TZ = True

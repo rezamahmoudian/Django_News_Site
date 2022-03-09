@@ -1,11 +1,12 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from .models import Article, Category, IP_Address
+from .models import Article, Category, IP_Address, ArticleViews
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from acount.models import User
 from acount.mixins import AccessUpdateForm
 from datetime import datetime, timedelta
+from django.db.models import Count, Q
 
 # Create your views here.
 
@@ -26,12 +27,11 @@ class ArticleListView(ListView):
 
     def get_queryset(self):
         last_month = datetime.today() - timedelta(days=30)
-        article = Article.objects.published()
-        # result = article.filter(ArticleViews__create__gt=last_month).order_by('-hits','-published')
+        # article = Article.objects.published()
+        # result = Article.objects.annotate(count=Count('ArticleViews__create__gt')).order_by('count')
+        article = Article.objects.published().annotate( count=Count('views', filter=Q(articleviews__create__gt=last_month))
+                                                        ).order_by('count')
         return article
-
-
-
 
 
 def aboutView(request):

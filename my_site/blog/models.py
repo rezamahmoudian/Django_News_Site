@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.utils import timezone
 from extentions.utils import geregori_to_jalali
@@ -59,8 +58,10 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
     special = models.BooleanField(default=False, verbose_name='مقاله ی ویژه')
+    views = models.ManyToManyField(IP_Address, through="ArticleViews", blank=True, related_name='views',
+                                   verbose_name="بازدید ها")
     comments = GenericRelation(Comment)
-    views = models.ManyToManyField(IP_Address, through="ArticleViews", blank=True, related_name='views', verbose_name="بازدید ها")
+
 
     class Meta:
         verbose_name = 'مقاله'
