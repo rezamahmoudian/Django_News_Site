@@ -4,7 +4,7 @@
 {% include_bootstrap %}
 {% load ratings %}
 {% load tmptags %}
-
+{% load humanize %}
 
 {% block  header %}
     <header class="masthead" style="background-image: url('{{ post.image.url }}')">
@@ -29,7 +29,7 @@
                             <span class="meta">
                                  نوشته شده توسط
                                 <a href="#!">  رضا </a>
-                                {{ post.jpublish }}
+                                {{ post.publish | naturaltime }}
                             </span>
 
                         </div>

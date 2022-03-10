@@ -2,6 +2,7 @@
 {% load static %}
 {% load tmptags %}
 {% load ratings %}
+{% load humanize %}
 
 {% block header %}
     <header class="masthead" style="background-image: url({% static 'blog/assets/img/home-bg.jpg' %}")>
@@ -45,9 +46,10 @@
                                             <span class="badge badge-pill badge-warning">ویژه</span>
                                         {% endif %}
                                     </h2>
+                                   </a>
                                    {% ratings post %}
                                     <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
-                                </a>
+
                             </div>
                         <p class="post-meta">
                             نوشته شده توسط
@@ -58,7 +60,7 @@
                                     {{ post.author }}
                                 {% endif %}
                             </a>
-                            {{ post.jpublish }}
+                            {{ post.publish | naturaltime }}
                         </p>
                         <div/>
                         <br>

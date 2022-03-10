@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'comment',
     'star_ratings',
-
+    'django.contrib.humanize',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

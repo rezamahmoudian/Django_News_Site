@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% load tmptags %}
+{% load humanize %}
 
 {% block header %}
 <header class="masthead" style="background-image: url({% static 'blog/assets/img/home-bg.jpg' %}" )>
@@ -49,7 +50,7 @@
                         {% endif %}
                     </a>
 
-                    {{ post.jpublish }}
+                    {{ post.publish | naturaltime }}
                 </p>
             </div>
             <br>
