@@ -7,6 +7,9 @@ from django.urls import reverse
 #comments
 from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
+#order by star rating
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 
 # Create your models here.
 
@@ -62,6 +65,9 @@ class Article(models.Model):
     views = models.ManyToManyField(IP_Address, through="ArticleViews", blank=True, related_name='views',
                                    verbose_name="بازدید ها")
     comments = GenericRelation(Comment)
+    # for order by star rating
+    ratings = GenericRelation(Rating, related_query_name='rating')
+
 
 
     class Meta:
@@ -98,4 +104,3 @@ class ArticleViews(models.Model):
     ip = models.ForeignKey(IP_Address, on_delete=models.CASCADE)
     view = models.ForeignKey(Article,  on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-

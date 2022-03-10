@@ -17,7 +17,7 @@ def navbar_tmp_tag():
     }
 
 
-@register.inclusion_tag("../templates/blog/partials/popular_article.html")
+@register.inclusion_tag("../templates/blog/partials/boxes.html")
 def popular_articles(): # گرفتن مقالات پربازدید و ارسال آن به تمپلیت
     # بدست آوردن تاریخ یک ماه قبل
     last_month = datetime.today() - timedelta(days=30)
@@ -30,8 +30,19 @@ def popular_articles(): # گرفتن مقالات پربازدید و ارسال
     ویوو هایی که طی یک ماه اخیر زده شده اند شمارش میشوند و مقاله ها متناسب با آن تعداد مرتب میشوند
     """
     return {
-        "popular_articles": Article.objects.published().annotate(
+        "articles": Article.objects.published().annotate(
             count=Count('views', filter=Q(articleviews__created__gt=last_month))
-            ).order_by('-count', '-publish')[:5]
+            ).order_by('-count', '-publish')[:5],
+        "title": "مقالات پربازدید ماه"
     }
+
+
+@register.inclusion_tag("../templates/blog/partials/boxes.html")
+def favorite_articles(): # گرفتن مقالات با امتیاز بالا و ارسال آن به تمپلیت
+    return {
+        "articles": Article.objects.filter(ratings__isnull=False).order_by('-ratings__average'),
+        "title":"مقالات محبوب"
+    }
+
+
 
