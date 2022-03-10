@@ -3,74 +3,83 @@
 {% load tmptags %}
 
 {% block header %}
-    <header class="masthead" style="background-image: url({% static 'blog/assets/img/home-bg.jpg' %}")>
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>REZA SITE</h1>
-                            <span class="subheading">development by reza</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-{% endblock %}
-
-{% block main %}
-            {% popular_articles %}
-            <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="alert alert-primary text-center">{% block dastebandi %}{% endblock %} </div>
-                    {% for post in object_list %}
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                            <div class="post_image">
-                                {{post.image_post}}
-                            </div>
-                            <div class="post-text">
-                               <a href="{% url 'blog:post' post.slug %}">
-                                    <h2 class="post-title">{{ post.title }}</h2>
-                                    <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
-                                </a>
-                            </div>
-                        <p class="post-meta">
-                            نوشته شده توسط
-                            <a href="{% url 'blog:author' post.author.username %}">
-                                {% if post.author.get_full_name %}
-                                    {{ post.author.get_full_name }}
-                                {% else %}
-                                    {{ post.author }}
-                                {% endif %}
-                            </a>
-
-                            {{ post.jpublish }}
-                        </p>
-                    </div>
-                    <br>
-                    <div class="post-hashtak">
-                            {% for category in post.category.active %}
-                                <a href="{% url 'blog:category' category.slug %}" >#{{ category.title }}</a>
-                            {% endfor %}
-                        </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-
-                    {% endfor %}
-
-                    <!-- Pager-->
-                    {% if is_paginated %}
-                        <div class="d-flex justify-content-end mb-4">
-                            {% if  page_obj.has_previous %}
-                                <a class="margin-left btn btn-primary text-uppercase " href=" {% block previous_page_url %}{% endblock %} ">پست های جدید &rarr; </a>
-                            {% endif %}
-                            {% if page_obj.has_next %}
-                                <a class="btn btn-primary text-uppercase" href="{% block next_page_url %}{% endblock %}">پست های قدیمی &larr; </a>
-                            {% endif %}
-                        </div>
-                    {% endif %}
+<header class="masthead" style="background-image: url({% static 'blog/assets/img/home-bg.jpg' %}" )>
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>REZA SITE</h1>
+                    <span class="subheading">development by reza</span>
                 </div>
             </div>
         </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block main %}
+<div class="boxes">
+    {% popular_articles %}
+    {% favorite_articles %}
+    {% hot_articles %}
+</div>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="alert alert-primary text-center">{% block dastebandi %}{% endblock %}</div>
+            {% for post in object_list %}
+            <!-- Post preview-->
+            <div class="post-preview">
+                <div class="post_image">
+                    {{post.image_post}}
+                </div>
+                <div class="post-text">
+                    <a href="{% url 'blog:post' post.slug %}">
+                        <h2 class="post-title">{{ post.title }}</h2>
+                        <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
+                    </a>
+                </div>
+                <p class="post-meta">
+                    نوشته شده توسط
+                    <a href="{% url 'blog:author' post.author.username %}">
+                        {% if post.author.get_full_name %}
+                        {{ post.author.get_full_name }}
+                        {% else %}
+                        {{ post.author }}
+                        {% endif %}
+                    </a>
+
+                    {{ post.jpublish }}
+                </p>
+            </div>
+            <br>
+            <div class="post-hashtak">
+                {% for category in post.category.active %}
+                <a href="{% url 'blog:category' category.slug %}">#{{ category.title }}</a>\
+                {% endfor %}
+            </div>
+            <!-- Divider-->
+            <hr class="my-4"/>
+            {% empty %}
+                <p class="content-text">
+                    مقاله ای جهت نماش وجود ندارد
+                </p>
+            {% endfor %}
+
+            <!-- Pager-->
+            {% if is_paginated %}
+            <div class="d-flex justify-content-end mb-4">
+                {% if page_obj.has_previous %}
+                <a class="margin-left btn btn-primary text-uppercase "
+                   href=" {% block previous_page_url %}{% endblock %} ">پست های جدید &rarr; </a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <a class="btn btn-primary text-uppercase" href="{% block next_page_url %}{% endblock %}">پست های قدیمی
+                    &larr; </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

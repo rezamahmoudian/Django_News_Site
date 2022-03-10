@@ -1,13 +1,13 @@
 @font-face {
-  font-family: Sahel;
-  src: url('Sahel.eot');
-  src: url('Sahel.eot?#iefix') format('embedded-opentype'),
-       url('Sahel.woff2') format('woff2'),
-       url('Sahel.woff') format('woff'),
-       url('Sahel.ttf') format('truetype');
+    font-family: Sahel;
+    src: url('Sahel.eot');
+    src: url('Sahel.eot?#iefix') format('embedded-opentype'),
+    url('Sahel.woff2') format('woff2'),
+    url('Sahel.woff') format('woff'),
+    url('Sahel.ttf') format('truetype');
 }
 
-body{
+body {
     direction: rtl;
     text-align: right;
     font-family: "Sahel";
@@ -27,15 +27,17 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .post-preview > .post-meta {
     text-align: left;
 }
-.meta{
+
+.meta {
     text-align: left;
     font-size: 15px !important;
 }
-.margin-left{
+
+.margin-left {
     margin-left: 20px;
 }
 
-.text-justify{
+.text-justify {
     text-align: justify !important;
 }
 
@@ -43,11 +45,11 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     padding-right: 0;
 }
 
-.navbar-nav .nav-link{
+.navbar-nav .nav-link {
     padding: 15px !important;
 }
 
-.nav ul li{
+.nav ul li {
     border-bottom: none;
     height: 16px;
     line-height: 16px;
@@ -56,6 +58,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     float: left;
     margin: 0 auto;
 }
+
 .nav ul li a {
     text-decoration: none;
     color: #000000;
@@ -69,11 +72,11 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     color: #ffffff;
 }
 
-.nav a{
+.nav a {
     border-bottom: none;
 }
 
-.nav li ul{
+.nav li ul {
     position: absolute;
     display: none;
     width: inherit;
@@ -90,39 +93,39 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     line-height: 34px;
 }
 
-.nav ul li ul li ul{
+.nav ul li ul li ul {
     position: absolute;
     right: 100%;
     top: 0;
     display: none !important;
 }
 
-.nav ul > li > ul > li:hover >ul {
-    display:block !important;
+.nav ul > li > ul > li:hover > ul {
+    display: block !important;
 }
 
 .nav ul > li > ul > li > ul > li:hover > ul {
-    display:block !important;
+    display: block !important;
 }
 
-.post-title{
+.post-title {
     font-size: 20px !important;
     margin-bottom: 0;
 }
 
-.post-subtitle{
+.post-subtitle {
     font-size: 15px !important;
     font-style: normal !important;
     font-weight: normal;
 }
 
-.post-meta{
+.post-meta {
     font-size: 13px !important;
     margin: 10px 0;
     float: left;
 }
 
-.post-hashtak{
+.post-hashtak {
     font-size: 12px !important;
 }
 
@@ -143,11 +146,11 @@ p a {
     font-weight: bold;
 }
 
-h1, .post-heading{
+h1, .post-heading {
     font-size: 28px !important;
 }
 
-.subheading{
+.subheading {
     font-size: 18px !important;
     font-weight: normal !important;
 }
@@ -165,12 +168,13 @@ p {
     font-size: 12px !important;
 }
 
-.boxes{
+.boxes {
     width: 240px;
     position: absolute;
-        left: 20px;
+    left: 20px;
 }
-.popular_article{
+
+.popular_article {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px 15px;
@@ -178,11 +182,371 @@ p {
     box-shadow: -5px 5px #d5d5d5;
 }
 
-.popular_article_title{
+.popular_article_title {
     margin: 7px 2px;
     font-size: 15px;
+}
+
+.form-inline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.ml-3,
+.mx-3 {
+    margin-left: 1rem !important;
+}
+
+.input-group-append {
+    margin-left: 0;
+}
+
+.input-group-sm + .form-control-feedback.fa,
+.input-group-sm + .form-control-feedback.fas,
+.input-group-sm + .form-control-feedback.far,
+.input-group-sm + .form-control-feedback.fab,
+.input-group-sm + .form-control-feedback.glyphicon,
+.input-group-sm + .form-control-feedback.ion {
+    line-height: calc(1.8125rem + 2px);
+}
+
+.form-control-navbar {
+    border-right-width: 0;
+}
+
+.form-control-navbar + .input-group-append {
+    margin-left: 0;
+}
+
+.btn-navbar {
+    transition: none;
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*search field in navbar*/
+.form-control-navbar:focus + .input-group-append .btn-navbar {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 0 !important;
+    color: #343a40;
+}
+
+
+.form-control-navbar {
+    border-right-width: 0;
+}
+
+.form-control-navbar + .input-group-append {
+    margin-left: 0;
+}
+
+.form-control-navbar,
+.btn-navbar {
+    transition: none;
+}
+
+.navbar-dark .form-control-navbar,
+.navbar-dark .btn-navbar {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 0;
+}
+
+.navbar-dark .form-control-navbar::-webkit-input-placeholder,
+.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-dark .form-control-navbar::-moz-placeholder,
+.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-dark .form-control-navbar:-ms-input-placeholder,
+.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-dark .form-control-navbar::-ms-input-placeholder,
+.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-dark .form-control-navbar::placeholder,
+.navbar-dark .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-dark .form-control-navbar:focus,
+.navbar-dark .form-control-navbar:focus + .input-group-append .btn-navbar {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 0 !important;
+    color: #343a40;
+}
+
+.navbar-light .form-control-navbar,
+.navbar-light .btn-navbar {
+    background-color: #f2f4f6;
+    border: 0;
+}
+
+.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::-webkit-input-placeholder,
+.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::-moz-placeholder,
+.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar:-ms-input-placeholder,
+.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::-ms-input-placeholder,
+.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-light .form-control-navbar:ms-placeholder, .navbar-light .form-control-navbar:moz-placeholder, .navbar-light .form-control-navbar::moz-placeholder, .navbar-light .form-control-navbar::placeholder,
+.navbar-light .form-control-navbar + .input-group-append > .btn-navbar {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-light .form-control-navbar:focus,
+.navbar-light .form-control-navbar:focus + .input-group-append .btn-navbar {
+    background-color: #e9ecef;
+    border: 0 !important;
+    color: #343a40;
+}
+
+form-control-feedback.fa, .form-control-feedback.fas, .form-control-feedback.far, .form-control-feedback.fab, .form-control-feedback.glyphicon, .form-control-feedback.ion {
+    line-height: calc(2.25rem + 2px);
+}
+
+.input-lg + .form-control-feedback.fa, .input-lg + .form-control-feedback.fas, .input-lg + .form-control-feedback.far, .input-lg + .form-control-feedback.fab, .input-lg + .form-control-feedback.glyphicon, .input-lg + .form-control-feedback.ion,
+.input-group-lg + .form-control-feedback.fa,
+.input-group-lg + .form-control-feedback.fas,
+.input-group-lg + .form-control-feedback.far,
+.input-group-lg + .form-control-feedback.fab,
+.input-group-lg + .form-control-feedback.glyphicon,
+.input-group-lg + .form-control-feedback.ion {
+    line-height: calc(2.875rem + 2px);
+}
+
+.form-group-lg .form-control + .form-control-feedback.fa, .form-group-lg .form-control + .form-control-feedback.fas, .form-group-lg .form-control + .form-control-feedback.far, .form-group-lg .form-control + .form-control-feedback.fab, .form-group-lg .form-control + .form-control-feedback.glyphicon, .form-group-lg .form-control + .form-control-feedback.ion {
+    line-height: calc(2.875rem + 2px);
+}
+
+.input-sm + .form-control-feedback.fa, .input-sm + .form-control-feedback.fas, .input-sm + .form-control-feedback.far, .input-sm + .form-control-feedback.fab, .input-sm + .form-control-feedback.glyphicon, .input-sm + .form-control-feedback.ion,
+.input-group-sm + .form-control-feedback.fa,
+.input-group-sm + .form-control-feedback.fas,
+.input-group-sm + .form-control-feedback.far,
+.input-group-sm + .form-control-feedback.fab,
+.input-group-sm + .form-control-feedback.glyphicon,
+.input-group-sm + .form-control-feedback.ion {
+    line-height: calc(1.8125rem + 2px);
+}
+
+.form-group-sm .form-control + .form-control-feedback.fa, .form-group-sm .form-control + .form-control-feedback.fas, .form-group-sm .form-control + .form-control-feedback.far, .form-group-sm .form-control + .form-control-feedback.fab, .form-group-sm .form-control + .form-control-feedback.glyphicon, .form-group-sm .form-control + .form-control-feedback.ion {
+    line-height: calc(1.8125rem + 2px);
+}
+
+
+.form-control.is-warning {
+    border-color: #ffc107;
+}
+
+.form-control.is-warning:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.25);
+}
+
+.form-control.is-warning ~ .warning-feedback,
+.form-control.is-warning ~ .warning-tooltip {
+    display: block;
+}
+
+textarea.form-control.is-warning {
+    padding-right: 2.25rem;
+    background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+}
+
+.form-control-file.is-warning ~ .warning-feedback,
+.form-control-file.is-warning ~ .warning-tooltip {
+    display: block;
+}
+
+.form-control-sm {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.form-control-sm {
+    height: calc(1.8125rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+select.form-control[size], select.form-control[multiple] {
+    height: auto;
+}
+
+textarea.form-control {
+    height: auto;
+}
+
+was-validated .form-control:valid, .form-control.is-valid {
+    border-color: #28a745;
+    padding-right: 2.25rem;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center right calc(0.375em + 0.1875rem);
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.was-validated .form-control:valid:focus, .form-control.is-valid:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.25);
+}
+
+.was-validated .form-control:valid ~ .valid-feedback,
+.was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback,
+.form-control.is-valid ~ .valid-tooltip {
+    display: block;
+}
+
+.was-validated textarea.form-control:valid, textarea.form-control.is-valid {
+    padding-right: 2.25rem;
+    background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+}
+
+.was-validated .form-control-file:valid ~ .valid-feedback,
+.was-validated .form-control-file:valid ~ .valid-tooltip, .form-control-file.is-valid ~ .valid-feedback,
+.form-control-file.is-valid ~ .valid-tooltip {
+    display: block;
+}
+
+.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.25);
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-tooltip {
+    display: block;
+}
+
+.was-validated textarea.form-control:invalid, textarea.form-control.is-invalid {
+    padding-right: 2.25rem;
+    background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+}
+
+.was-validated .form-control-file:invalid ~ .invalid-feedback,
+.was-validated .form-control-file:invalid ~ .invalid-tooltip, .form-control-file.is-invalid ~ .invalid-feedback,
+.form-control-file.is-invalid ~ .invalid-tooltip {
+    display: block;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+.form-inline .form-control-plaintext {
+    display: inline-block;
+}
+
+.lockscreen-credentials .form-control {
+    border: 0;
+}
+
+.login-card-body .input-group .form-control,
+.register-card-body .input-group .form-control {
+  border-right: 0;
+}
+
+.login-card-body .input-group .form-control:focus,
+.register-card-body .input-group .form-control:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text {
+  border-color: #80bdff;
+}
+
+.login-card-body .input-group .form-control.is-valid:focus,
+.register-card-body .input-group .form-control.is-valid:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text {
+  border-color: #28a745;
+}
+
+.login-card-body .input-group .form-control.is-invalid:focus,
+.register-card-body .input-group .form-control.is-invalid:focus {
+  box-shadow: none;
+}
+
+.login-card-body .input-group .form-control.is-invalid ~ .input-group-append ,
+.input-group .form-control.is-invalid ~ .input-group-append .input-group-text {
+  border-color: #dc3545;
+}

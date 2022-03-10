@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from acount.models import User
 from acount.mixins import AccessUpdateForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -97,3 +98,20 @@ class PreviewPostView(AccessUpdateForm, DetailView):
         pk= self.kwargs.get('pk')
         return Article.objects.filter(pk = pk)
     template_name = 'blog/preview_post.html'
+
+
+
+class SearchView(ListView):
+    paginate_by = 1
+    template_name = "../templates/blog/search.html"
+
+    def get_queryset(self):
+        global search
+        search = self.request.GET.get('q')
+        articles = Article.objects.filter(Q(content__icontains=search) | Q(title__icontains=search))
+        return articles
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = search
+        return context
