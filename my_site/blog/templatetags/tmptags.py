@@ -16,6 +16,8 @@ def navbar_tmp_tag():
         "categorys": Category.objects.filter(status=True)
     }
 
+#  برای نوشتن تمپلیت تگ باید آدرس تمپلیت خود را در اینکلوژن تگ زیر بنویسیم
+#  و سپس تابعی تعریف میکنیم
 
 @register.inclusion_tag("../templates/blog/partials/boxes.html")
 def popular_articles(): # گرفتن مقالات پربازدید و ارسال آن به تمپلیت
@@ -39,9 +41,23 @@ def popular_articles(): # گرفتن مقالات پربازدید و ارسال
 
 @register.inclusion_tag("../templates/blog/partials/boxes.html")
 def favorite_articles(): # گرفتن مقالات با امتیاز بالا و ارسال آن به تمپلیت
+    last_month = datetime.today() - timedelta(days=30)
     return {
-        "articles": Article.objects.filter(ratings__isnull=False).order_by('-ratings__average'),
+        "articles":  Article.objects.filter(ratings__isnull=False).annotate(count=Count('comments',
+                     filter=Q(comments__posted__gt=last_month) and Q(comments__content_type_id=6)))
+                                                      .order_by('-ratings__average', '-count', '-publish')[:5],
         "title":"مقالات محبوب"
+    }
+
+
+@register.inclusion_tag("../templates/blog/partials/boxes.html")
+def hot_articles(): # گرفتن مقالات با امتیاز بالا و ارسال آن به تمپلیت
+    last_month = datetime.today() - timedelta(days=30)
+    return {
+        "articles": Article.objects.published().annotate(count=Count('comments',
+                    filter= Q(comments__posted__gt=last_month) and Q(comments__content_type_id=6)))
+                    .order_by('-count', '-ratings__average', '-publish')[:5],
+        "title":"مقالات داغ ماه"
     }
 
 
