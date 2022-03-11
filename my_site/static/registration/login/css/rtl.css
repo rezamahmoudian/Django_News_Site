@@ -41,3 +41,18 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   color: inherit;
   text-decoration: none;
 }
+
+.non-field-errors {
+    background-color: #fcbaba;
+    padding: 10px 30px;
+}
+
+p.form-error {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.field-errors{
+     background-color: #fcbaba;
+     padding: 5px;
+}

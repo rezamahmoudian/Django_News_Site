@@ -14,13 +14,27 @@
                                 <i class="zmdi zmdi-font"></i>
                             </span>
 
-    <div class="wrap-input100 validate-input" data-validate = "Enter username">
+    <div class="wrap-input100 validate-input" data-validate="Enter username">
         {{ form.username | add_class:'input100' }}
+        {% if form.username.errors %}
+        <div class="field-errors">
+            {% for error in form.username.errors %}
+            <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <span class="focus-input100" data-placeholder="نام کاربری"></span>
     </div>
 
-    <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+    <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
         {{ form.email | add_class:'input100' }}
+        {% if form.email.errors %}
+        <div class="field-errors">
+            {% for error in form.email.errors %}
+            <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <span class="focus-input100" data-placeholder="ایمیل"></span>
     </div>
 
@@ -29,6 +43,13 @@
                                     <i class="zmdi zmdi-eye"></i>
                                 </span>
         {{ form.password1 | add_class:'input100' }}
+        {% if form.password1.errors %}
+        <div class="field-errors">
+            {% for error in form.password1.errors %}
+            <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <span class="focus-input100" data-placeholder="گذرواژه"></span>
     </div>
     <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -36,6 +57,13 @@
                                     <i class="zmdi zmdi-eye"></i>
                                 </span>
         {{ form.password2 | add_class:'input100' }}
+        {% if form.password2.errors %}
+        <div class="field-errors">
+            {% for error in form.password2.errors %}
+            <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <span class="focus-input100" data-placeholder="تایید گذرواژه"></span>
     </div>
     <div class="container-login100-form-btn" style="margin-bottom: 7px">

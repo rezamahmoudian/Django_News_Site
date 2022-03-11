@@ -169,7 +169,8 @@ p {
 }
 
 .boxes {
-    width: 240px;
+    width: 20%;
+    float: left;
     position: absolute;
     left: 20px;
 }
@@ -225,6 +226,8 @@ p {
 .btn-navbar {
     transition: none;
 }
+
+
 
 
 
