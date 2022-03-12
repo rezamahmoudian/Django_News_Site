@@ -6,7 +6,7 @@ from blog.models import Article
 from .models import User
 from .forms import ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm, AccessAuthors
+from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm, AccessAuthors,AccessAdmins
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.http import HttpResponse
@@ -172,7 +172,7 @@ def activate(request, uidb64, token):
 
 
 #ویوو پروفایل برای دسترسی ادمین ها به پروفایل نویسندگان
-class UsersProfile(LoginRequiredMixin, UpdateView):
+class UsersProfile(LoginRequiredMixin,AccessAdmins, UpdateView):
     #چون میخواهیم پروفایلمان متشکل از یک فرم باشد پس به آن یوز(که میخواهیم اطلاعات آن در فرم نمایش داده شوند و یا ویرایش شوند)
     #وهمینطور فرمی که در فرم ها ساختیم را میدهیم
     #و یک تمپلیت به آن میدهیم که فرم ما به آ« وصل شئد
@@ -193,7 +193,7 @@ class UsersProfile(LoginRequiredMixin, UpdateView):
     #فرستادن یوزر با اضافه کردن آن در دیکشنری kwargs که باعث میشود ما در فرم هم به یوزر دسترسی داشته باشیم و شرط سوپر یوزر بودن را ب کار ببریم
     def get_form_kwargs(self):
         kwargs = super(UsersProfile, self).get_form_kwargs()
-        #اینجا یوزر لاگین کرده که همان ادمین است را به فرم ارسال میکنیم تا سطح دسترسی به فرم ها بر اساس دسترسی های ادمین باشد 
+        #اینجا یوزر لاگین کرده که همان ادمین است را به فرم ارسال میکنیم تا سطح دسترسی به فرم ها بر اساس دسترسی های ادمین باشد
         kwargs['user'] = self.request.user
         return kwargs
 

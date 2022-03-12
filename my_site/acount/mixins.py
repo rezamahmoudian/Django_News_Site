@@ -55,3 +55,18 @@ class AccessAuthors():
             #اگر لاگین نکرده باشد با زدن url مربوط به این صفحات به صفحه ی لاگین فرستاده میشود
             return redirect("login")
 
+
+class AccessAdmins():
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            # کاربر باید ادمین(سوپریوزر)باشد تا به این صفحات دسترسی پیدا کند
+            if self.request.user.is_superuser :
+                return super().dispatch(request, *args, **kwargs)
+            else:
+                #د غیر این صورت به پروفایل فرستاده میشود
+                return redirect("acount:profile")
+        else:
+            #اگر لاگین نکرده باشد با زدن url مربوط به این صفحات به صفحه ی لاگین فرستاده میشود
+            return redirect("login")
+
+
