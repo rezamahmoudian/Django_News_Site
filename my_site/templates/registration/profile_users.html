@@ -1,0 +1,69 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head %} {% block meta_title %}
+پروفایل کاربری
+{% endblock %} {% endblock %}
+
+
+{% block main %}
+<!-- Security token -->
+<div class="col-md-12">
+    {{ request.resolver_match }}
+    <!-- general form elements -->
+    <div class="card card-primary" style="background-color: #dde4ec;">
+        <div class="card-header">
+            {% if request.resolver_match.kwargs.pk %}
+                <h3 class="card-title float-left">پروفایل کاربری</h3>
+            {% else %}
+                <h3 class="card-title float-left">پروفایل کاربری</h3>
+            {% endif %}
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="image" style=" margin: 10px 5px; margin-right: 25px;" >
+                    <img src=" {{ user.profile_img.url }} " class="img-circle elevation-2" style="height: 140px; width: 140px;" alt="User Image">
+                </div>
+                <div class="col-5" style=" margin: 20px 5px;">
+                    {{ form.profile_img |as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-6">
+                    {{ form.vip_user|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.is_author|as_crispy_field }}
+                    <p>گذرواژه:برای تغییر گذرواژه <a href="{% url 'password_change' %}"> کلیک </a> کنید</p>
+                </div>
+            </div>
+
+            <!-- Using the formset -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success"  >ذخیره ی تغییرات</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+

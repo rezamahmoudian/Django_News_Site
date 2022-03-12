@@ -170,59 +170,37 @@ def activate(request, uidb64, token):
         return HttpResponse('لینک فعالسازی منقضی شده است')
 
 
-# from django.contrib.auth import get_user_model
-# from django.contrib.auth.tokens import default_token_generator
-# from django.contrib.sites.shortcuts import get_current_site
-# from django.core.mail import EmailMessage
-# from django.http import HttpResponse
-# from django.shortcuts import render
-# from django.template.loader import render_to_string
-# from django.utils.encoding import force_bytes
-# from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-#
-# UserModel = get_user_model()
-# from .forms import SignupForm
-# from .tokens import account_activation_token
-#
-#
-# def signup(request):
-#     if request.method == 'GET':
-#         return render(request, 'accounts/signup.html')
-#     if request.method == 'POST':
-#         form = SignUpForm(request.POST)
-#         # print(form.errors.as_data())
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.is_active = False
-#             user.save()
-#             current_site = get_current_site(request)
-#             mail_subject = 'Activate your account.'
-#             message = render_to_string('accounts/acc_active_email.html', {
-#                 'user': user,
-#                 'domain': current_site.domain,
-#                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-#                 'token': default_token_generator.make_token(user),
-#             })
-#             to_email = form.cleaned_data.get('email')
-#             email = EmailMessage(
-#                 mail_subject, message, to=[to_email]
-#             )
-#             email.send()
-#             return HttpResponse('Please confirm your email address to complete the registration')
-#     else:
-#         form = SignUpForm()
-#     return render(request, 'accounts/signup.html', {'form': form})
-#
-#
-# def activate(request, uidb64, token):
-#     try:
-#         uid = urlsafe_base64_decode(uidb64).decode()
-#         user = UserModel._default_manager.get(pk=uid)
-#     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-#         user = None
-#     if user is not None and default_token_generator.check_token(user, token):
-#         user.is_active = True
-#         user.save()
-#         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
-#     else:
-#         return HttpResponse('Activation link is invalid!')
+
+#ویوو پروفایل برای دسترسی ادمین ها به پروفایل نویسندگان
+class UsersProfile(LoginRequiredMixin, UpdateView):
+    #چون میخواهیم پروفایلمان متشکل از یک فرم باشد پس به آن یوز(که میخواهیم اطلاعات آن در فرم نمایش داده شوند و یا ویرایش شوند)
+    #وهمینطور فرمی که در فرم ها ساختیم را میدهیم
+    #و یک تمپلیت به آن میدهیم که فرم ما به آ« وصل شئد
+    #به عبارت دیگر ابتدا یوزر را به فرم میفرستیم و س÷س فرم را به تمپلیت میفرستیم
+    model = User #اینجا فقط مشخص میکنیم که مدل ما از نوع یوزر است و پایین تر مشخص میشود که کدام یوزر باید به فرم ارسال شود
+    form_class = ProfileForm
+    template_name = 'registration/profile_users.html'
+    success_url = reverse_lazy ("acount:profile_users")
+
+    #فرستادن یوزر به فرم به عنوان آبجکت که باعث میشود فرم نمایش داده شده مربوط به همان یوزری باشد که لاگین کرده است
+    def get_object(self, *args, **kwargs):
+        global user
+        #یوزری که آی دی آن در url آمده است به فرم ارسال میشود
+        user = User.objects.get(id=self.kwargs.get('pk'))
+        return user
+
+    #آپدیت کردن kwargs برای ارسال به فرم و ایجاد ارتباط بین ویوو و فرم
+    #فرستادن یوزر با اضافه کردن آن در دیکشنری kwargs که باعث میشود ما در فرم هم به یوزر دسترسی داشته باشیم و شرط سوپر یوزر بودن را ب کار ببریم
+    def get_form_kwargs(self):
+        kwargs = super(UsersProfile, self).get_form_kwargs()
+        #اینجا یوزر لاگین کرده که همان ادمین است را به فرم ارسال میکنیم تا سطح دسترسی به فرم ها بر اساس دسترسی های ادمین باشد 
+        kwargs['user'] = self.request.user
+        return kwargs
+
+#یک ویوو برای حذف مقالات
+#به آن دو میکسین داده شده است که دسترسی ها به این ویوو را مدیریت میکنند
+class ArticleDeleteView(LoginRequiredMixin, AccessUpdateForm, DeleteView):
+    model = Article
+    success_url = reverse_lazy("acount:home")
+    template_name = 'registration/delete_article.html'
+
