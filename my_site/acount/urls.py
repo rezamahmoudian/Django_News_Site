@@ -11,3 +11,4 @@ urlpatterns = [
     path('profile/', ProfileView.as_view() , name='profile'),
     path('delete_article/<int:pk>', ArticleDeleteView.as_view() , name='delete_atticle'),
 ]
+

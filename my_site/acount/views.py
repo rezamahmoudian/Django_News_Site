@@ -108,10 +108,9 @@ class Signup(CreateView):
     template_name = 'registration/signup.html'
     #به ویوو یک فرم داده میشود
     #اگر فرم ارسالی ولید بود ایمیلی جهت تایید برای کاربر ارسال شود
-    def form_valid(self, form):
-        user = form.save(commit=False)
-        user.is_active = False
-        user.save()
+
+
+    def send_activation_email(self, request, user):
         current_site = get_current_site(self.request)
         mail_subject = 'Activate your account.'
         message = render_to_string('registration/acc_active_email.html', {
@@ -120,12 +119,40 @@ class Signup(CreateView):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         })
-        to_email = form.cleaned_data.get('email')
+        to_email = user.email
         email = EmailMessage(
             mail_subject, message, to=[to_email]
         )
         email.send()
+
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+        self.send_activation_email(self.request, user)
         return render(self.request, 'registration/signup_email_confirm.html')
+
+
+
+    # تابعی که قبل از چک شدن ولید بودن فرم فراخوانی میشود ما با اوور راید کردن این تابع
+    # ابتدا چک میکنیم که آیا نام کاربری و ایمیل انتخاب شده قبلا ثبت نام کرده اند یا نه
+    # اگر قبلا ثبت نام کرده بودند چک میکنیم که آیا اکانت آن شخص غیرفعال است؟ و اگر اکانت شخص فعال نبود
+    #  برای او ایمیلی جهت فعالسازی اکانتش ارسال میکنیم و از ادامه ی فرایند ثبت نام جلوگیری میکنیم
+    #  اما اگر آن شخص اکانت غیر فعال نداشت و یا اصلا اکانتی نداشت مراحل ثبت نام بصورت معمولی طی میشوند
+    def post(self, request, *args, **kwargs):
+        """ Handles existing inactive user registration attempt """
+
+        form = self.form_class(self.request.POST)
+
+        if User.objects.filter(email=request.POST['email']).exists():
+            user = User.objects.get(email=request.POST['email'])
+            if not user.is_active:
+                self.send_activation_email(request, user)
+                return render(self.request, 'registration/signup_email_confirm.html')
+
+        # if no record found pass to form_valid
+        return super().post(request, *args, **kwargs)
 
 
 #فغالسازی اکانت درصورت کلیک روی لینک ایمیل شده
@@ -141,8 +168,6 @@ def activate(request, uidb64, token):
         return render(request, 'registration/signup_email_confirm_done.html')
     else:
         return HttpResponse('لینک فعالسازی منقضی شده است')
-
-
 
 
 # from django.contrib.auth import get_user_model
