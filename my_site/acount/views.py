@@ -184,7 +184,9 @@ class UsersProfile(LoginRequiredMixin,AccessAdmins, UpdateView):
     model = User #اینجا فقط مشخص میکنیم که مدل ما از نوع یوزر است و پایین تر مشخص میشود که کدام یوزر باید به فرم ارسال شود
     form_class = ProfileForm
     template_name = 'registration/profile_users.html'
-    success_url = reverse_lazy ("acount:profile_users")
+
+    def get_success_url(self,*args, **kwargs):
+        return reverse_lazy ('acount:users_profile', kwargs={'pk':self.kwargs.get('pk')})
 
     #فرستادن یوزر به فرم به عنوان آبجکت که باعث میشود فرم نمایش داده شده مربوط به همان یوزری باشد که لاگین کرده است
     def get_object(self, *args, **kwargs):
@@ -215,10 +217,20 @@ class ArticleDeleteView(LoginRequiredMixin, AccessUpdateForm, DeleteView):
 #     template_name = 'registration/profile.html'
 #     success_url = reverse_lazy("acount:profile")
 
-def request_author(request):
+
+# وقتی کاربر بر روی دکمه ی درخواست نویسندگی کلیک کند این تابع فراخوانی شده و درخئاست کاربر ارسال میشود
+def author_request(request):
     user = request.user
-    user.is_author = True
+    user.author_request = True
     user.save()
-    success_url = 'registration/profile.html'
+    # انتقال به صفحه ی پروفایل بعد از اتمام کار تابع
     return HttpResponseRedirect(reverse('acount:profile'))
 
+
+
+#یک ویوو برای نمایش لیست مقالات
+#به آن میکسین هایی داده شده است که دسترسی ها به این ویوو را مدیریت میکنند
+class UserListView(LoginRequiredMixin, AccessAdmins, ListView):
+    template_name = 'registration/user_list.html'
+    def get_queryset(self):
+        return User.objects.filter(is_superuser=False).order_by('-author_request')

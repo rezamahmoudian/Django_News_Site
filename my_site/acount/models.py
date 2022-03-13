@@ -8,6 +8,7 @@ class User(AbstractUser):
     is_author = models.BooleanField(default=False,verbose_name='وضعیت نویسندگی')
     vip_user = models.DateTimeField(default=timezone.now, verbose_name='کاربر وی آی پی تا')
     profile_img = models.ImageField(upload_to="images", default="images/avatar5.png", verbose_name='عکس پروفایل')
+    author_request = models.BooleanField(default=False, verbose_name='درخواست نویسندگی')
     def is_vip_user(self):
         if self.vip_user > timezone.now():
             return True

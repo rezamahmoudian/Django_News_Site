@@ -61,10 +61,10 @@
                 <button type="submit" class="btn btn-success"  >ذخیره ی تغییرات</button>
             </div>
         </form>
-         {% if not user.is_author %}
-        <form action="{% url 'acount:request_author' %}" method="POST">
+         {% if not user.is_author and not user.author_request %}
+        <form action="{% url 'acount:author_request' %}" method="POST">
             {% csrf_token %}
-            <button  type="submit" class="btn btn-warning" id="request_author">درخواست نویسندگی</button>
+            <button  type="submit" class="btn btn-warning" id="author_request">درخواست نویسندگی</button>
         </form>
         {% endif %}
 
