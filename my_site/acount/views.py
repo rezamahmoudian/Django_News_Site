@@ -146,15 +146,12 @@ class Signup(CreateView):
     #  اما اگر آن شخص اکانت غیر فعال نداشت و یا اصلا اکانتی نداشت مراحل ثبت نام بصورت معمولی طی میشوند
     def post(self, request, *args, **kwargs):
         """ Handles existing inactive user registration attempt """
-
         form = self.form_class(self.request.POST)
-
         if User.objects.filter(email=request.POST['email']).exists():
             user = User.objects.get(email=request.POST['email'])
             if not user.is_active:
                 self.send_activation_email(request, user)
                 return render(self.request, 'registration/signup_email_confirm.html')
-
         # if no record found pass to form_valid
         return super().post(request, *args, **kwargs)
 
@@ -188,9 +185,15 @@ class UsersProfile(LoginRequiredMixin,AccessAdmins, UpdateView):
     def get_success_url(self,*args, **kwargs):
         return reverse_lazy ('acount:users_profile', kwargs={'pk':self.kwargs.get('pk')})
 
+    #بعد از ایجاد تغییر در اطلاعات یوزر اگر که ادمین یوزر را نویسنده کرد درخواست نویسندگی او فالس شود
+    def post(self, request, *args, **kwargs):
+        user = User.objects.get(id=self.kwargs.get('pk'))
+        if user.is_author == True:
+            user.author_request == False
+        return super().post(request, *args, **kwargs)
+
     #فرستادن یوزر به فرم به عنوان آبجکت که باعث میشود فرم نمایش داده شده مربوط به همان یوزری باشد که لاگین کرده است
     def get_object(self, *args, **kwargs):
-        global user
         #یوزری که آی دی آن در url آمده است به فرم ارسال میشود
         user = User.objects.get(id=self.kwargs.get('pk'))
         return user
