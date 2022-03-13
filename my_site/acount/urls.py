@@ -1,6 +1,6 @@
 from django.contrib.auth import views
 from django.urls import path
-from .views import ArticleListView,ArticleCreateView, ArticleUpdateView, ArticleDeleteView, ProfileView, Login, UsersProfile
+from .views import ArticleListView,ArticleCreateView, ArticleUpdateView, ArticleDeleteView, ProfileView, Login, UsersProfile, request_author
 
 app_name = 'acount'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('profile/', ProfileView.as_view() , name='profile'),
     path('profile/<int:pk>', UsersProfile.as_view() , name='users_profile'),
     path('delete_article/<int:pk>', ArticleDeleteView.as_view() , name='delete_atticle'),
+    path('profile/request_author', request_author, name='request_author' )
 ]

@@ -23,6 +23,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 
 app_name = 'acount'
@@ -72,6 +75,7 @@ class ProfileView(LoginRequiredMixin, UpdateView):
         kwargs = super(ProfileView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
+
 
 #یک ویوو برای حذف مقالات
 #به آن دو میکسین داده شده است که دسترسی ها به این ویوو را مدیریت میکنند
@@ -203,4 +207,18 @@ class ArticleDeleteView(LoginRequiredMixin, AccessUpdateForm, DeleteView):
     model = Article
     success_url = reverse_lazy("acount:home")
     template_name = 'registration/delete_article.html'
+
+
+# class RecuestAuthorView(UpdateView):
+#     model = User
+#     form_class = RecuestAuthorForm
+#     template_name = 'registration/profile.html'
+#     success_url = reverse_lazy("acount:profile")
+
+def request_author(request):
+    user = request.user
+    user.is_author = True
+    user.save()
+    success_url = 'registration/profile.html'
+    return HttpResponseRedirect(reverse('acount:profile'))
 
