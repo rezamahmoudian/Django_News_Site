@@ -26,6 +26,7 @@ from django.core.mail import EmailMessage
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
 # Create your views here.
 
 app_name = 'acount'
@@ -239,3 +240,20 @@ class UserListView(LoginRequiredMixin, AccessAdmins, ListView):
     template_name = 'registration/user_list.html'
     def get_queryset(self):
         return User.objects.filter(is_superuser=False).order_by('-author_request')
+
+
+
+class SearchView(ListView):
+    paginate_by = 1
+    template_name = "registration/home.html"
+
+    def get_queryset(self):
+        global search
+        search = self.request.GET.get('q')
+        articles = Article.objects.filter(Q(content__icontains=search) | Q(title__icontains=search))
+        return articles
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = search
+        return context

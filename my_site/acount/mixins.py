@@ -81,4 +81,3 @@ class LoginAccess():
         else:
             #در غیر این صورت به صفحه ی لاگین میرود
             return super().dispatch(request, *args, **kwargs)
-
