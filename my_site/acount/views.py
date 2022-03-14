@@ -6,7 +6,7 @@ from blog.models import Article
 from .models import User
 from .forms import ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm, AccessAuthors,AccessAdmins
+from .mixins import CreateFieldsMixin, FormValidMixin, AccessUpdateForm, AccessAuthors,AccessAdmins, LoginAccess
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.http import HttpResponse
@@ -94,7 +94,7 @@ class MyAuthForm(AuthenticationForm):
     }
 
 #سفارشی کردن لاگین ویوو جنگو
-class Login(LoginView):
+class Login(LoginAccess, LoginView):
     authentication_form = MyAuthForm
     template_name = 'registration/login.html'
     #نمیدونم چرا این کار نمیکنه بخاطر همین با میکسین ها مشکل رو حل کردم

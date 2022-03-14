@@ -69,4 +69,16 @@ class AccessAdmins():
             #اگر لاگین نکرده باشد با زدن url مربوط به این صفحات به صفحه ی لاگین فرستاده میشود
             return redirect("login")
 
+class LoginAccess():
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            # اگر کاربر لاگین کرده باشد و نویسنده یا ادمین باشد به صفحه مقالات ریدایرکت میشود
+            if self.request.user.is_superuser or self.request.user.is_author :
+                return redirect("acount:home")
+            else:
+                # اگر لاگین کرده باشد و نویسنده یا ادمین هم نباشد به صفحه ی پروفایلش میرود
+                return redirect("acount:profile")
+        else:
+            #در غیر این صورت به صفحه ی لاگین میرود
+            return super().dispatch(request, *args, **kwargs)
 
