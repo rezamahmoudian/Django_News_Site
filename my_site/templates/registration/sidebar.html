@@ -34,7 +34,11 @@
                with font-awesome or any other icon font library -->
           {% if request.user.is_superuser or request.user.is_author %}
             <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link
+                                  {% if request.resolver_match.url_name == 'home' or request.resolver_match.url_name == 'create_atticle' %}
+                                  active
+                                  {% endif %}
+                                      ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   مقالات
