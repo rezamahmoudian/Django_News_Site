@@ -14,7 +14,8 @@
                 <div class="card-header">
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                            <input type="text" name="table_search" class="form-control float-right"
+                                   placeholder="Search">
 
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -23,6 +24,7 @@
                     </div>
                 </div>
                 <!-- /.card-header -->
+                {% block table %}
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover">
                         <thead>
@@ -41,24 +43,24 @@
                         {% for article in object_list %}
                         <tr>
                             <td>
-                            {% if article.status in 'd,b' or user.is_superuser %}
+                                {% if article.status in 'd,b' or user.is_superuser %}
                                 <a href="{% url 'acount:update_atticle' article.pk %}">
                                     {{ article.title }}
                                 </a>
-                            {% else %}
-                                 {{ article.title }}
-                            {% endif %}
+                                {% else %}
+                                {{ article.title }}
+                                {% endif %}
                             </td>
-                            <td>{{ article.image_post_adminpage }} </td>
-                            <td>{{ article.author.get_full_name }} </td>
-                            <td>{{ article.category_to_str }} </td>
-                            <td>{{ article.content | safe | striptags | truncatewords:35 }} </td>
-                            <td>{{ article.jpublish }} </td>
+                            <td>{{ article.image_post_adminpage }}</td>
+                            <td>{{ article.author.get_full_name }}</td>
+                            <td>{{ article.category_to_str }}</td>
+                            <td>{{ article.content | safe | striptags | truncatewords:35 }}</td>
+                            <td>{{ article.jpublish }}</td>
                             <td>
                                 {% if article.special %}
-                                    <i class="fa fa-check-circle" style="color: green"></i>
+                                <i class="fa fa-check-circle" style="color: green"></i>
                                 {% else %}
-                                    <i class="fa fa-times-circle" style="color: red"></i>
+                                <i class="fa fa-times-circle" style="color: red"></i>
                                 {% endif %}
                             </td>
 
@@ -66,25 +68,29 @@
                                 {% if article.status == 'p' %}
                                 <p class="badge badge-success" style="margin-bottom: 0">منتشر شده</p>
                                 <p style="margin-bottom: 0">
-                                    <a target="_blank" href="{% url 'blog:post' article.slug %}" class="badge badge-secondary">مشاهده در سایت</a>
+                                    <a target="_blank" href="{% url 'blog:post' article.slug %}"
+                                       class="badge badge-secondary">مشاهده در سایت</a>
                                 </p>
                                 {% elif article.status == 'i' %}
-                                    <p class="badge badge-warning" style="margin-bottom: 0">ارسال شده</p>
-                                    <p style="margin-bottom: 0">
-                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">مشاهده ی پیش نمایش</a>
+                                <p class="badge badge-warning" style="margin-bottom: 0">ارسال شده</p>
+                                <p style="margin-bottom: 0">
+                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">مشاهده
+                                        ی پیش نمایش</a>
                                 </p>
 
                                 {% elif article.status == 'b' %}
-                                    <p class="badge badge-danger" style="margin-bottom: 0">برگشت داده شده</p>
+                                <p class="badge badge-danger" style="margin-bottom: 0">برگشت داده شده</p>
                                 {% elif article.status == 'd' %}
                                 <p class="badge badge-info" style="margin-bottom: 0">پیشنویس</p>
                                 <p style="margin-bottom: 0">
-                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">مشاهده ی پیش نمایش</a>
+                                    <a href="{% url 'blog:preview-post' article.pk %}" class="badge badge-secondary">مشاهده
+                                        ی پیش نمایش</a>
                                 </p>
                                 {% endif %}
                                 {% if user.is_superuser or user.username == article.author and article.status == 'd' %}
                                 <p style="margin-bottom: 0">
-                                    <a href="{% url 'acount:delete_atticle' article.pk %}" class="badge text-danger">حذف</a>
+                                    <a href="{% url 'acount:delete_atticle' article.pk %}"
+                                       class="badge text-danger">حذف</a>
                                 </p>
                                 {% endif %}
 
@@ -96,6 +102,7 @@
                         </tbody>
                     </table>
                 </div>
+                {% endblock %}
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -103,7 +110,7 @@
     </div>
 </div>
 {% else %}
-    <h5>مقاله ای جهت نمایش وجود ندارد.</h5>
+<h5>مقاله ای جهت نمایش وجود ندارد.</h5>
 {% endif %}
 
 {% endblock %}

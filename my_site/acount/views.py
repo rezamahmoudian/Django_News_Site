@@ -185,12 +185,14 @@ class UsersProfile(LoginRequiredMixin,AccessAdmins, UpdateView):
     def get_success_url(self,*args, **kwargs):
         return reverse_lazy ('acount:users_profile', kwargs={'pk':self.kwargs.get('pk')})
 
-    #بعد از ایجاد تغییر در اطلاعات یوزر اگر که ادمین یوزر را نویسنده کرد درخواست نویسندگی او فالس شود
-    def post(self, request, *args, **kwargs):
-        user = User.objects.get(id=self.kwargs.get('pk'))
-        if user.is_author == True:
-            user.author_request == False
-        return super().post(request, *args, **kwargs)
+
+    # بعد از ایجاد تغییر در اطلاعات یوزر اگر که ادمین یوزر را نویسنده کرد درخواست نویسندگی او فالس شود
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        if user.is_author:
+            user.author_request = False
+        user.save()
+        return super(UsersProfile, self).form_valid(form)
 
     #فرستادن یوزر به فرم به عنوان آبجکت که باعث میشود فرم نمایش داده شده مربوط به همان یوزری باشد که لاگین کرده است
     def get_object(self, *args, **kwargs):

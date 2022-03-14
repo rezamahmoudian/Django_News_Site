@@ -1,3 +1,85 @@
-{% for user in object_list %}
-    {{user}}//////////
-{% endfor %}
+{% extends 'registration/home.html' %}
+
+
+{% block table %}
+    <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>نام کاربری</th>
+                            <th>تصویر</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>وضعیت نویسندگی</th>
+                            <th>کاربر ویژه</th>
+                            <th>درخواست نویسندگی</th>
+                            <th>رتبه</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in object_list %}
+                        <tr>
+                            <td>
+                                {% if request.user.is_superuser %}
+                                <a href="{% url 'acount:users_profile' user.id %}">
+                                    {{ user.username }}
+                                </a>
+                                {% else %}
+                                {{ user.username }}
+                                {% endif %}
+                            </td>
+                            <td>{{ user.image_user_adminpage }}</td>
+                            <td>{{ user.get_full_name }}</td>
+                            <td>
+                            {% if user.is_author %}
+                                <i class="fa fa-check-circle" style="color: green"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle" style="color: red"></i>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user.vip_usesr %}
+                                <i class="fa fa-check-circle" style="color: green"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle" style="color: red"></i>
+                                {% endif %}
+                            </td>
+                            <td>
+                            {% if user.author_request %}
+                                <i class="fa fa-check-circle" style="color: green"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle" style="color: red"></i>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if user.is_superuser %}
+                                <p class="badge badge-warning" style="margin-bottom: 0">ادمین</p>
+                                <p style="margin-bottom: 0">
+                                    <a target="_blank" href="{% url 'acount:users_profile' user.id %}"
+                                       class="badge badge-secondary">مشاهده پروفایل</a>
+                                </p>
+                                {% elif user.is_author %}
+                                <p class="badge badge-success" style="margin-bottom: 0">نویسنده</p>
+                                <p style="margin-bottom: 0">
+                                    <a href="{% url 'acount:users_profile' user.id %}" class="badge badge-secondary">مشاهده پروفایل</a>
+                                </p>
+
+                                {% elif user.user_vip %}
+                                <p class="badge badge-warning" style="margin-bottom: 0">کاربر ویژه</p>
+                                <p style="margin-bottom: 0">
+                                    <a href="{% url 'acount:users_profile' user.id %}" class="badge badge-secondary">مشاهده پروفایل</a>
+                                </p>
+                                {% else %}
+                                <p class="badge badge-info" style="margin-bottom: 0">کاربر معمولی</p>
+                                <p style="margin-bottom: 0">
+                                    <a href="{% url 'acount:users_profile' user.id %}" class="badge badge-secondary">مشاهده پروفایل</a>
+                                </p>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+{% endblock %}
