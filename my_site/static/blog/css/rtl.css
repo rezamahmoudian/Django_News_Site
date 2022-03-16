@@ -136,8 +136,12 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     float: none;
     display: inline-block;
     vertical-align: middle;
-    margin-right: auto;
-    width: 66.66666667%;
+    margin-right: 5px;
+    width: 66%;
+}
+
+.post_image {
+    float: right;
 }
 
 a:hover {

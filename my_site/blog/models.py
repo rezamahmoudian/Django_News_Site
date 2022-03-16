@@ -90,10 +90,10 @@ class Article(models.Model):
         return self.category.filter(status=True)
 
     def image_post_adminpage(self):
-        return format_html("<img width=130 height=110 border-radius: 5px; src='{}'".format(self.image.url))
+        return format_html("<img width=130 height=110 border-radius: 5px; src='{}'>".format(self.image.url))
 
     def image_post(self):
-        return format_html("<img width=150 height=130 border-radius: 5px; src='{}'".format(self.image.url))
+        return format_html("<img width=150 height=130 border-radius: 5px; src='{}'>".format(self.image.url))
 
     def get_absolute_url(self):
         return reverse("acount:home")
