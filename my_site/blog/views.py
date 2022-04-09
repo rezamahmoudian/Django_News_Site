@@ -21,7 +21,7 @@ from django.db.models import Q
 #     return render(request, 'blog/home.html', dic)
 
 class ArticleListView(ListView):
-    paginate_by = 4
+    paginate_by = 6
     template_name = 'blog/home.html'
     queryset = Article.objects.published()
 
@@ -63,7 +63,7 @@ def postView(request, slug):
 
 
 class CategoryListView(ListView):
-    paginate_by = 4
+    paginate_by = 6
     template_name = "../templates/blog/category.html"
 
     def get_queryset(self):
@@ -102,7 +102,7 @@ class PreviewPostView(AccessUpdateForm, DetailView):
 
 
 class SearchView(ListView):
-    paginate_by = 1
+    paginate_by = 6
     template_name = "../templates/blog/search.html"
 
     def get_queryset(self):
