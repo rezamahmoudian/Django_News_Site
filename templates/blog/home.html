@@ -1,0 +1,92 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load tmptags %}
+{% load ratings %}
+{% load humanize %}
+
+{% block header %}
+    <header class="masthead" style="background-image: url({% static 'blog/assets/img/home-bg.jpg' %}")>
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>REZA SITE</h1>
+                            <span class="subheading">Development by Reza Mahmoudian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+
+{% block main %}
+<div class="boxes">
+                {% popular_articles %}
+                {% favorite_articles %}
+                {% hot_articles %}
+            </div>
+            <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% for post in object_list %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <span class="home-view">
+                            <i class="bi bi-eye "></i>
+                            {{ post.views.count }}
+                        </span>
+                            <div class="post_image">
+                                {{post.image_post}}
+                            </div>
+                            <div class="post-text">
+                               <a href="{% url 'blog:post' post.slug %}">
+                                    <h2 class="post-title">
+                                        {{ post.title }}
+                                        {% if post.special %}
+                                            <span class="badge badge-pill badge-warning">ویژه</span>
+                                        {% endif %}
+                                    </h2>
+                                   </a>
+                                   {% ratings post %}
+                                    <h3 class="post-subtitle">{{ post.content | safe | striptags | truncatewords:40 }}</h3>
+
+                            </div>
+                        <p class="post-meta">
+                            نوشته شده توسط
+                            <a href="{% url 'blog:author' post.author.username %}">
+                                {% if post.author.get_full_name %}
+                                    {{ post.author.get_full_name }}
+                                {% else %}
+                                    {{ post.author }}
+                                {% endif %}
+                            </a>
+                            {{ post.publish | naturaltime }}
+                        </p>
+                        <div/>
+                        <br>
+                        <div class="post-hashtak">
+                            {% for category in post.category.active %}
+                                <a href="{% url 'blog:category' category.slug %}" >#{{ category.title }}</a>
+                            {% endfor %}
+                        </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+
+                    {% endfor %}
+
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-end mb-4">
+                        {% if  page_obj.has_previous %}
+                            <a class="margin-left btn btn-primary text-uppercase " href="{% url 'blog:home'  page_obj.previous_page_number  %}">پست های جدید &rarr; </a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-primary text-uppercase" href="{% url 'blog:home'  page_obj.next_page_number  %}">پست های قدیمی &larr; </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            </div>
+
+{% endblock %}

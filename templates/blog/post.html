@@ -1,0 +1,73 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load comment_tags %}
+{% include_bootstrap %}
+{% load ratings %}
+{% load tmptags %}
+{% load humanize %}
+
+{% block  header %}
+    <header class="masthead" style="background-image: url('{{ post.image.url }}')">
+        <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>
+                                {{ post.title }}
+                                {% if post.special %}
+                                    <span class="badge badge-pill badge-warning">ویژه</span>
+                                {% endif %}
+                            </h1>
+                            <div>
+                                {% ratings post %}
+                                <span class="post-view">
+                                    <i class="bi bi-eye "></i>
+                                {{ post.views.count }}
+                            </span>
+                            </div>
+                            <h2 class="subheading">{{ post.content | safe | striptags | truncatewords:30 }}</h2>
+                            <span class="meta">
+                                 نوشته شده توسط
+                                <a href="#!">  رضا </a>
+                                {{ post.publish | naturaltime }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+
+{% block main %}
+    <span class="boxes">
+                {% popular_articles %}
+                {% favorite_articles %}
+                {% hot_articles %}
+            </span>
+     <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7 text-justify">
+                        {% if post.special %}
+                            {% if user.is_superuser or user == post.author or user.is_vip_user %}
+                                {{ post.content | safe | linebreaks }}
+                            {% else %}
+                        <div class="vip-warning">
+                            <p class="alert alert-warning">
+                                    این مقاله ویژه است.برای مشاهده ی این مقاله باید <a href="#">اشتراک ویژه </a>تهیه کنید.
+                            </p>
+                        </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="post-content">
+                            {{ post.content | safe | linebreaks }}
+                            </div>
+                        {% endif %}
+                    </div>
+                        {% render_comments post request %}
+
+
+                </div>
+            </div>
+        </article>
+{% endblock %}
