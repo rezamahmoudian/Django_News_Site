@@ -2,59 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8f0281b-d6b7-4da0-997f-eb88267c8b93" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/acount/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0002_auto_20220211_1819.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0003_alter_user_email.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0004_user_profile_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0005_alter_user_profile_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0006_auto_20220304_1954.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0007_alter_user_profile_img.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acount/migrations/0008_user_author_request.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/migrations/0002_rename_create_articleviews_created.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/migrations/0003_star_rating.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/migrations/0004_delete_star_rating.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0002_comment_edit_date.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0003_auto_20200419_1423.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0004_reaction_reactioninstance.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0005_auto_20200521_1301.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0006_flag_flaginstance.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0007_auto_20200620_1259.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0008_comment_urlhash.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0009_auto_20200811_1945.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0010_auto_20201023_1442.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0011_follower.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0012_blockeduser_blockeduserhistory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/migrations/0013_auto_20220305_1552.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0002_auto_20211205_1649.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0003_article_category.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0004_auto_20211220_2030.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0005_auto_20220205_1813.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0006_article_author.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0007_alter_article_author.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0008_alter_article_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0009_article_special.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0010_ip_address.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0011_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0012_auto_20220308_1945.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0013_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0014_alter_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0015_auto_20220309_0104.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0016_auto_20220309_0105.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0017_auto_20220309_0109.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0018_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0019_remove_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0020_auto_20220309_0154.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0021_alter_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0022_remove_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0023_delete_articleviews.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0024_article_hits.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0025_auto_20220309_0218.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/0026_remove_article_views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_site/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
@@ -2414,7 +2364,7 @@
       <workItem from="1653295911760" duration="9000" />
       <workItem from="1653295929306" duration="1329000" />
       <workItem from="1653408761192" duration="980000" />
-      <workItem from="1653565013711" duration="995000" />
+      <workItem from="1653565013711" duration="4469000" />
     </task>
     <servers />
   </component>
