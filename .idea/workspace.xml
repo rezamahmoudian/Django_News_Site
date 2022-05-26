@@ -4,7 +4,7 @@
     <list default="true" id="d8f0281b-d6b7-4da0-997f-eb88267c8b93" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_site/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_site/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
@@ -2364,7 +2364,7 @@
       <workItem from="1653295911760" duration="9000" />
       <workItem from="1653295929306" duration="1329000" />
       <workItem from="1653408761192" duration="980000" />
-      <workItem from="1653565013711" duration="4469000" />
+      <workItem from="1653565013711" duration="7047000" />
     </task>
     <servers />
   </component>
